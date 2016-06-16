@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Driver", "Driver\Driver.csproj", "{CE600C4A-E401-4420-869A-006EB0C77F81}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CCEC999C-DE5E-43EF-BCD9-584117AFDF6B} = {CCEC999C-DE5E-43EF-BCD9-584117AFDF6B}
+		{43D383DF-AB50-480A-AED5-5FFAEA163720} = {43D383DF-AB50-480A-AED5-5FFAEA163720}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogueGenerator", "DialogueGenerator\DialogueGenerator.csproj", "{CCEC999C-DE5E-43EF-BCD9-584117AFDF6B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{43D383DF-AB50-480A-AED5-5FFAEA163720} = {43D383DF-AB50-480A-AED5-5FFAEA163720}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldManager", "WorldRepresentation\WorldManager.csproj", "{43D383DF-AB50-480A-AED5-5FFAEA163720}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldEditor", "WorldEditor\WorldEditor.csproj", "{D19878EE-A3DD-4AF0-8F95-F3893BDED9A8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CCEC999C-DE5E-43EF-BCD9-584117AFDF6B} = {CCEC999C-DE5E-43EF-BCD9-584117AFDF6B}
+		{43D383DF-AB50-480A-AED5-5FFAEA163720} = {43D383DF-AB50-480A-AED5-5FFAEA163720}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE600C4A-E401-4420-869A-006EB0C77F81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE600C4A-E401-4420-869A-006EB0C77F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE600C4A-E401-4420-869A-006EB0C77F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE600C4A-E401-4420-869A-006EB0C77F81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCEC999C-DE5E-43EF-BCD9-584117AFDF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCEC999C-DE5E-43EF-BCD9-584117AFDF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCEC999C-DE5E-43EF-BCD9-584117AFDF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCEC999C-DE5E-43EF-BCD9-584117AFDF6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43D383DF-AB50-480A-AED5-5FFAEA163720}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D383DF-AB50-480A-AED5-5FFAEA163720}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D383DF-AB50-480A-AED5-5FFAEA163720}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D383DF-AB50-480A-AED5-5FFAEA163720}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D19878EE-A3DD-4AF0-8F95-F3893BDED9A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D19878EE-A3DD-4AF0-8F95-F3893BDED9A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D19878EE-A3DD-4AF0-8F95-F3893BDED9A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D19878EE-A3DD-4AF0-8F95-F3893BDED9A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

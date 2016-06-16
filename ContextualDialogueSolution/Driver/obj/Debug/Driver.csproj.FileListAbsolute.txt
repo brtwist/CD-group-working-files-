@@ -1,0 +1,12 @@
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\bin\Debug\Driver.exe
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\bin\Debug\Driver.pdb
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\bin\Debug\DialogueGenerator.dll
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\bin\Debug\WorldRepresentation.dll
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\bin\Debug\DialogueGenerator.pdb
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\bin\Debug\WorldRepresentation.pdb
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\obj\Debug\Driver.csprojResolveAssemblyReference.cache
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\obj\Debug\Driver.Properties.Resources.resources
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\obj\Debug\Driver.csproj.GenerateResource.Cache
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\obj\Debug\Driver.exe
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\obj\Debug\Driver.pdb
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\Driver\obj\Debug\DriverNamespace.DriverForm.resources

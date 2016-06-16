@@ -1,0 +1,10 @@
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldEditor\bin\Debug\WorldEditor.exe
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldEditor\bin\Debug\WorldEditor.pdb
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldEditor\bin\Debug\WorldRepresentation.dll
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldEditor\bin\Debug\WorldRepresentation.pdb
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Debug\WorldEditor.csprojResolveAssemblyReference.cache
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Debug\WorldEditor.Properties.Resources.resources
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Debug\WorldEditor.csproj.GenerateResource.Cache
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Debug\WorldEditor.exe
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Debug\WorldEditor.pdb
+c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Debug\WorldEditorNamespace.EditorForm.resources
