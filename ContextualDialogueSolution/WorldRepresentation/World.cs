@@ -2,71 +2,97 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections;
+using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
+
 
 /*contains all the knowledge of the world, in searchable form*/
-namespace WorldManagerNamespace
+namespace ContextualDialogue.WorldManager
 {
     [Serializable]
     public class World
     {
         private Random r;
-        //unsorted list
-        private List<Knowable> worldArray;
+
+        private TypeDictionary typeDictionary;
+        private ArrayList worldArray;
+        //public ObjectDictionary objectDictionary;
+        
+        //private 
         //list sorted by preposition
 
         public String worldName;
 
-        public World(String n)
+        public World(String n, TypeDictionary typeDictionary)
         {
             worldName = n;
-            worldArray = new List<Knowable>();
+            this.typeDictionary = typeDictionary;
+            worldArray = new ArrayList();
+
+            //KnowableDictionary
+            //where should events be stored. emotions. future. past. expected
             r = new Random();
         }
 
-        public void add(Knowable k)
+        public int add(PhysicalEntity k)//TODO definitely need a better ID function. e.g. once that actually gives unique id codes and one that always gives the same object the same ID
         {
             worldArray.Add(k);
-            k.ID = k.getNoun() + r.NextDouble().ToString();
+            k.ID = k.GetHashCode()/*k.nodeName + r.NextDouble().ToString()*/;
+            return k.ID;//now the game has a copy of the ID used to identify this object
         }
+        
+        /*SEARCH METHODS*/
 
-        public List<Knowable> findAll(Type t)
+        public PhysicalEntity findByID(int IDtoFind)
         {
-            return worldArray.FindAll(
-            delegate (Knowable k)
+            //TODO commmmee onnnn. this is a linear search
+            foreach (PhysicalEntity i in worldArray)
             {
-                return k.GetType() == t;
+                if (i.ID == IDtoFind)
+                    return i;
             }
-            );
+            //else ID not found
+            return null;
         }
 
-        public List<Knowable> find(String IDToFind)
+        public PhysicalEntity getRandomEntity()
         {
-            return worldArray.FindAll(
-            delegate (Knowable k)
+            try
             {
-                return k.ID == IDToFind;
+                return (PhysicalEntity)worldArray[r.Next(worldArray.Count)];
             }
-            );
+            catch (ArgumentOutOfRangeException)
+            {
+                throw new FileLoadException("Error: maybe you tried searching in an empty world? check that world data is all loaded before any conversations are created");
+            }
         }
 
-        public Knowable[] getAll()
+        
+        /*GET_ALL FUNCTIONS*/
+        //used as a kind of toString for displaying all world objects
+
+        //returns every physical entity
+        public Object[] getAllPhysicalEntities()
         {
             return worldArray.ToArray();
         }
 
-        public Knowable getRandom()
+        //returns an array of the tostring of every physical entity
+        public String[] getAllphysicalEntitiesToString()
         {
-            
-            return worldArray[r.Next(worldArray.Count)];
+            object[] objectarray = worldArray.ToArray();
+            String[] stringarray = new String[objectarray.Length];
+
+            for (int i = objectarray.Length - 1; i >= 0; i--)
+            {
+                PhysicalEntity pe = (PhysicalEntity)objectarray[i];
+                stringarray[i] = pe.ToString();
+            }
+            return stringarray;
         }
 
 
-
-        //public String toString()
-        //{
-        //return string of whole database
-        //}
-
+        /*SEARCH FUNCTIONS*/
+        //get all by type
         //search by preposition + child
         //search by preposition + parent
         //search by adjectives

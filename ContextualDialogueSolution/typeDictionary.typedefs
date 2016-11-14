@@ -1,0 +1,100 @@
+%name typeDefinitions
+
+%class root is automatically created. other classes should inherit from root
+
+#typedefinition start PhysicalEntity #ISA root
+#typedefinition end PhysicalEntity
+
+#typedefinition start movingthing #ISA PhysicalEntity
+	|noun |singular=moving thing |plural= moving things
+	%|gradeable |speed = 1.0
+#typedefinition end movingthing
+
+#typedefinition start transport #ISA movingthing
+	%walking, horse, bike, car, truck, train, ship
+#typedefinition end transport
+
+%%%%%%%%%%%%%%%%%%%animals
+
+#typedefinition start animal #ISA movingthing
+	|noun |singular=animal |plural=animals
+#typedefinition end animal
+
+#typedefinition start horse #ISA animal
+	|noun |singular=horse |plural=horses
+	|noun |singular=pony |plural=ponies
+	|descriptor |trait=grass |verb=eat
+	|descriptor |trait=farm |verb=live |preposition=on
+	|descriptor |trait=fast |verb=run
+	|descriptor |ability=true |verb=carry |trait=people
+	%|gradeable speed=1.3
+	%descriptorprepositional has 4 hooves TODO
+#typedefinition end horse
+
+#typedefinition start cow #ISA animal
+	|noun |singular=cow |plural=cows
+	|descriptor |trait=grass |verb=eat
+	|descriptor |trait=farm |verb=live |preposition=on
+	%|gradeable speed=-1
+	|descriptor |trait=milk |verb=make
+#typedefinition end cow
+
+#typedefinition start calf #ISA cow
+	|noun |singular=calf |plural=calves
+	|canuseparentnoun |value=true
+	|descriptor |trait=cute
+%	|cancel |descriptor |trait=milk 
+#typedefinition end calf
+
+%%%%%%%%%%%%%%%%%%places
+
+#typedefinition start region #ISA root
+	|noun |singular=region |plural=regions
+	|noun |singular=area |plural=areas
+#typedefinition end region
+
+#typedefinition start country #ISA region
+	%|gradeable=temperature |value=1.0
+	%|gradeable=size |value=1.0
+#typedefinition end country
+
+#typedefinition start state #ISA region
+	|canuseparentnoun |value=true
+	%|gradeable=size |value=0.9
+#typedefinition end state
+
+%%%%%%%%%%%%%%%%%%food and drink
+#typedefinition start food #ISA PhysicalEntity
+	%|gradeable tastes |value=1.0 |range=0.9-1.3
+	|descriptor |trait=ripe |verb=is |probability=0.9
+#typedefinition end food
+
+#typedefinition start fruit #ISA food
+	|noun |singular=fruit |countable=false
+	%|gradeable=taste |value=1.1
+	%|gradeable=healthy |value1.0
+#typedefinition end fruit
+
+#typedefinition start banana #ISA fruit
+	|noun |singular=banana |plural=bananas
+	%|gradeable=taste |value=1.2
+	|descriptor |trait=yellow |verb=is
+	%|gradeable=healthy |value=1.5 
+#typedefinition end banana
+
+#typedefinition start mango #ISA fruit
+	%|gradeable tastes |value=1.4
+#typedefinition end mango
+
+#typedefinition start chocolate #ISA food
+	%|gradeable tastes |value=1.4
+#typedefinition end chocolate
+
+#typedefinition start hotdrink #ISA PhysicalEntity
+	|noun |singular=hot drink |plural=hot drinks
+	%|gradeable=temperature |value=1.3
+#typedefinition end hotdrink
+
+#typedefinition start coffee #ISA hotdrink
+	|descriptor |trait=strong |verb=is |probability=0.75
+#typedefinition end coffee 

@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using DialogueGeneratorNamespace;
-using WorldManagerNamespace;
+using ContextualDialogue.DialogueGenerator;
+using ContextualDialogue.WorldManager;
 
 namespace DriverNamespace
 {

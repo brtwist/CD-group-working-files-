@@ -1,0 +1,24 @@
+#name adverbs
+
+#class start adverbsofdegree
+	#class start gradable
+		>extremely
+	
+		>very
+		>really
+		>quite
+	
+		>a bit
+		>a little
+		>a tiny bit
+	#class end gradable
+	
+	#class start nongradable
+		>absolutely
+		>really
+		>totally
+	#class end nongradable
+#class end adverbsofdegree
+
+#class start adverbsoftime
+#class end adverbsoftime

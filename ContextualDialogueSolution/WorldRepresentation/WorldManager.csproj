@@ -7,8 +7,8 @@
     <ProjectGuid>{43D383DF-AB50-480A-AED5-5FFAEA163720}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WorldRepresentation</RootNamespace>
-    <AssemblyName>WorldRepresentation</AssemblyName>
+    <RootNamespace>ContextualDialogue.WorldManager</RootNamespace>
+    <AssemblyName>WorldManager</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,23 +35,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Apple.cs" />
-    <Compile Include="Coffee.cs" />
+    <Compile Include="DescriptorGradable.cs" />
+    <Compile Include="FileLoadException.cs" />
+    <Compile Include="TypeDefinitionDictionary\Range.cs" />
+    <Compile Include="DescriptorPrepositional.cs" />
     <Compile Include="Descriptor.cs" />
-    <Compile Include="Drink.cs" />
     <Compile Include="Enum.cs" />
-    <Compile Include="Food.cs" />
-    <Compile Include="Knowable.cs" />
+    <Compile Include="TypeDefinitionDictionary\Noun.cs" />
+    <Compile Include="TypeDefinitionDictionary\PhysicalEntity.cs" />
+    <Compile Include="TypeDefinitionDictionary\TypeDictionary.cs" />
+    <Compile Include="TypeDefinitionDictionary\TreeNode.cs" />
     <Compile Include="Ownership.cs" />
-    <Compile Include="PhysicalEntity.cs" />
-    <Compile Include="Place.cs" />
     <Compile Include="SpatialLocation.cs" />
     <Compile Include="World.cs" />
-    <Compile Include="WorldManager.cs" />
+    <Compile Include="WorldEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <Compile Include="TypeDefinitionDictionary\TypeDefinition.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

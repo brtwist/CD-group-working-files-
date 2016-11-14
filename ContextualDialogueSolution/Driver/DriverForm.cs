@@ -5,32 +5,35 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using WorldManagerNamespace;
-using DialogueGeneratorNamespace;
+using ContextualDialogue.WorldManager;
+using ContextualDialogue.DialogueGenerator;
 
 namespace DriverNamespace
 {
     public partial class DriverForm : Form
     {
-        private WorldManager worldManager;
+        private WorldEngine worldManager;
         private DialogueGenerator dialogueGenerator;
 
         public DriverForm()
         {
             InitializeComponent();
-            worldManager = new WorldManager();
+            worldManager = new WorldEngine();
 
             
         }
 
         private void loadWorld()
         {
-            worldManager.load();//loads default world
-            worldNameLabel.Text = worldManager.getWorldName();
+            //worldManager.load();//loads default world
+            worldNameLabel.Text = worldManager.world.worldName;
             dialogueGenerator = new DialogueGenerator(worldManager);
+            worldManager.loadWorldFile();
 
             //now that a world is loaded we can enable the groupbox
             outputGroupBox.Enabled = true;
+            //disable till a convo has been started
+            EndConvoButton.Enabled = false;
         }
 
         private void closeWorld()
@@ -43,9 +46,9 @@ namespace DriverNamespace
 
         }
 
-        private void updateOutput(String output)
+        private void updateOutput(ContextualDialogue.DialogueGenerator.Turn output)
         {
-            outputRichTextBox.AppendText("Agent 1 says: " + output + "\n");
+            outputRichTextBox.AppendText(output.participant.ToString() + " says: " + output.utterance + "\n");
         }
 
         private void loadWorldButton_Click(object sender, EventArgs e)
@@ -56,9 +59,27 @@ namespace DriverNamespace
 
         private void CreateConvoButton_Click(object sender, EventArgs e)
         {
-            dialogueGenerator.newConversation();
-            updateOutput(dialogueGenerator.getOutput());
+            if(dialogueGenerator.conversation == null)
+                dialogueGenerator.newConversation("Agent 1", "Agent 2");
+
+            //get everything off the output buffer
+            while(dialogueGenerator.hasNextOutput())
+                updateOutput(dialogueGenerator.getOutput());
+
+            EndConvoButton.Enabled = true;
        
+        }
+
+        private void EndConvoButton_Click(object sender, EventArgs e)
+        {
+            dialogueGenerator.conversation.closeConversation();
+
+            //get everything off the output buffer
+            while (dialogueGenerator.hasNextOutput())
+                updateOutput(dialogueGenerator.getOutput());
+
+            
+            loadWorld();//reset the world and wipe the existing convo object
         }
     }
 }

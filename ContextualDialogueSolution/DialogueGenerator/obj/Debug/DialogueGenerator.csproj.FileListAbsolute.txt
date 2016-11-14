@@ -1,7 +1,7 @@
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\bin\Debug\DialogueGenerator.dll
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\bin\Debug\DialogueGenerator.pdb
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\obj\Debug\DialogueGenerator.dll
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\obj\Debug\DialogueGenerator.pdb
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\obj\Debug\DialogueGenerator.csprojResolveAssemblyReference.cache
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\bin\Debug\WorldRepresentation.dll
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\bin\Debug\WorldRepresentation.pdb
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\obj\Debug\DialogueGenerator.csprojResolveAssemblyReference.cache
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\bin\Debug\DialogueGenerator.dll
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\bin\Debug\DialogueGenerator.pdb
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\bin\Debug\WorldManager.dll
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\bin\Debug\WorldManager.pdb
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\obj\Debug\DialogueGenerator.dll
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\DialogueGenerator\obj\Debug\DialogueGenerator.pdb

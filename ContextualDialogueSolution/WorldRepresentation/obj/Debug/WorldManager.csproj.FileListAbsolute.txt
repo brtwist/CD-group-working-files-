@@ -1,5 +1,5 @@
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldRepresentation\obj\Debug\WorldManager.csprojResolveAssemblyReference.cache
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldRepresentation\obj\Debug\WorldRepresentation.dll
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldRepresentation\obj\Debug\WorldRepresentation.pdb
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldRepresentation\bin\Debug\WorldRepresentation.dll
-c:\users\benjamint\documents\visual studio 2015\Projects\ContextualDialogueSolution\WorldRepresentation\bin\Debug\WorldRepresentation.pdb
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldRepresentation\obj\Debug\WorldManager.csprojResolveAssemblyReference.cache
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldRepresentation\bin\Debug\WorldManager.dll
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldRepresentation\bin\Debug\WorldManager.pdb
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldRepresentation\obj\Debug\WorldManager.dll
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldRepresentation\obj\Debug\WorldManager.pdb

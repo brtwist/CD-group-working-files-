@@ -59,6 +59,7 @@
             this.createConvoButton = new System.Windows.Forms.Button();
             this.outputRichTextBox = new System.Windows.Forms.RichTextBox();
             this.loadWorldButton = new System.Windows.Forms.Button();
+            this.EndConvoButton = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.outputGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -207,6 +208,7 @@
             // 
             // outputGroupBox
             // 
+            this.outputGroupBox.Controls.Add(this.EndConvoButton);
             this.outputGroupBox.Controls.Add(this.conversationTypeComboBox);
             this.outputGroupBox.Controls.Add(this.label3);
             this.outputGroupBox.Controls.Add(this.agent2omboBox2);
@@ -298,7 +300,7 @@
             // 
             this.createConvoButton.Location = new System.Drawing.Point(6, 158);
             this.createConvoButton.Name = "createConvoButton";
-            this.createConvoButton.Size = new System.Drawing.Size(364, 23);
+            this.createConvoButton.Size = new System.Drawing.Size(272, 23);
             this.createConvoButton.TabIndex = 1;
             this.createConvoButton.Text = "Go!";
             this.createConvoButton.UseVisualStyleBackColor = true;
@@ -323,6 +325,16 @@
             this.loadWorldButton.Text = "Load World";
             this.loadWorldButton.UseVisualStyleBackColor = true;
             this.loadWorldButton.Click += new System.EventHandler(this.loadWorldButton_Click);
+            // 
+            // EndConvoButton
+            // 
+            this.EndConvoButton.Location = new System.Drawing.Point(284, 158);
+            this.EndConvoButton.Name = "EndConvoButton";
+            this.EndConvoButton.Size = new System.Drawing.Size(82, 23);
+            this.EndConvoButton.TabIndex = 12;
+            this.EndConvoButton.Text = "Farewell!";
+            this.EndConvoButton.UseVisualStyleBackColor = true;
+            this.EndConvoButton.Click += new System.EventHandler(this.EndConvoButton_Click);
             // 
             // DriverForm
             // 
@@ -380,6 +392,7 @@
         private System.Windows.Forms.ComboBox agent2omboBox2;
         private System.Windows.Forms.ComboBox conversationTypeComboBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button EndConvoButton;
     }
 }
 

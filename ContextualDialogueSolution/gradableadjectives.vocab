@@ -1,0 +1,82 @@
+#name gradableadjectives
+%contains adjectives which form sliding scales, e.g. time or tastiness
+%need to differentiate between gradeable and ungradeable adjectives (those which can be used with adverbs)
+
+	#class start size
+		>colossal
+		
+		>immense
+		>gigantic
+		>huge
+		>massive
+		
+		>big |gradeable
+		>large
+		
+		>little
+		>petite
+		>miniature
+		>small
+		
+		>tiny
+		>minescule
+	#class end size
+	
+	#class start height
+		>tall
+		>short
+		>small
+		>tiny
+	#class end height
+	
+	#class start temperature
+		>sweltering
+		
+		>hot
+		>summery
+		
+		>warm
+		
+		>cool
+		>chilly
+		
+		
+		>cold
+		>crisp
+		>wintry
+		
+		>frosty
+		>icy
+		
+		>arctic
+		>bitterly cold
+	#class end temperature
+	
+	#class start tasty
+		>scrumptious
+		>heavenly
+		>divine
+		>delectable
+		
+		>delicious
+		>mouthwatering
+		
+		>yummy
+		>great
+		>tasty
+		
+		>nice
+		
+		>bland
+		>tasteless
+		>flavorless
+		>dull
+		
+		>unappetizing
+		
+		>yucky
+		>unsavory
+		
+		>horrible
+		>disgusting
+	#class end tasty

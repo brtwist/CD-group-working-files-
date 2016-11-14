@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
 
 /*
  * this class represents the relationship of ownership.
  * the owner owns the owned.
  */
 
-namespace WorldManagerNamespace
+namespace ContextualDialogue.WorldManager
 {
     class Ownership
     {
