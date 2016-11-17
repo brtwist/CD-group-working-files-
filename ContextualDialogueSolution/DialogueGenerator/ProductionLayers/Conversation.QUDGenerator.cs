@@ -7,20 +7,8 @@ namespace ContextualDialogue.DialogueGenerator
 {
     partial class Conversation
     {
-        
-        //struct to hold QUD items
-        public struct QUDitem
-        {
-            public String initiatingSpeaker;
-            public String respondingSpeaker;
-            public int objectID;
-            //verb
-            public ExchangeTypeEnum exchangeType;
-            //salience
-            //lengthiness of exchange on this topic
-        }
 
-        public enum ExchangeTypeEnum { QuestionWhere }//, SocialCatchUp, SocialGettingToKnowYou, MiscGiveCompliment }//do you like. how far
+
         public Queue<QUDitem> QUD;
 
 
@@ -34,9 +22,9 @@ namespace ContextualDialogue.DialogueGenerator
 
             switch (q.exchangeType)
                 {
-                    case ExchangeTypeEnum.QuestionWhere:
-                       generateQuestionWhere(q);
-                        break;
+                    //case QUDitem.ExchangeTypeEnum.QuestionWhere:
+                    //   generateQuestionWhere(q);
+                    //    break;
 
                     default://should never get here, should throw error somehow
                         break;
@@ -55,6 +43,14 @@ namespace ContextualDialogue.DialogueGenerator
             m.methodToCall = "parseGreetingPhase";
             m.paramaters = new object[1] { -1 };//dummy paramater to keep .invoke happy
             MovesQueue.Enqueue(m);
+
+            if (conversationalParamaters.greetingMode == ConversationalParamaters.GreetingMode.fourTurn)
+            {
+                m = new MovesQueueItem();
+                m.methodToCall = "parseGreetingPhaseQuestions";
+                m.paramaters = new object[1] { -1 };//dummy paramater to keep .invoke happy
+                MovesQueue.Enqueue(m);
+            }
         }
 
         //pushes farewell to QUD, if appropriate
@@ -88,11 +84,11 @@ namespace ContextualDialogue.DialogueGenerator
 
             //generate random one. this is only a test case. algorithm needs to be developed
             QUDitem q = new QUDitem();
-            q.objectID = world.getRandomEntity().ID;
+            q.subjectID = world.getRandomEntity().ID;
 
-            var enumValues = ExchangeTypeEnum.GetValues(typeof(ExchangeTypeEnum));
+            var enumValues = QUDitem.ExchangeTypeEnum.GetValues(typeof(QUDitem.ExchangeTypeEnum));
             //var random = new Random();
-            q.exchangeType = (ExchangeTypeEnum)enumValues.GetValue(r.Next(enumValues.Length));
+            q.exchangeType = (QUDitem.ExchangeTypeEnum)enumValues.GetValue(r.Next(enumValues.Length));
 
             QUD.Enqueue(q);
         }
@@ -117,12 +113,12 @@ namespace ContextualDialogue.DialogueGenerator
                 randomRespondingSpeaker(q.initiatingSpeaker);
 
             //TODO should it choose a random salient object rather than completely random object?
-            if (q.objectID == 0)
-                q.objectID = world.getRandomEntity().ID;
+            if (q.subjectID == 0)
+                q.subjectID = world.getRandomEntity().ID;
 
             /*end choosing random variables*/
 
-             PhysicalEntity subjectOfEnquiry = world.findByID(q.objectID);
+             PhysicalEntity subjectOfEnquiry = world.findByID(q.subjectID);
 
             MovesQueueItem m = new MovesQueueItem();
             m.methodToCall = "phaseExchangeWhere";
@@ -140,14 +136,14 @@ namespace ContextualDialogue.DialogueGenerator
         String randomInitiatingSpeaker()
         {
             //TODO actual randomizing algorithm
-            return participantOne;
+            return conversationalParamaters.participantOne;
         }
 
         //TODO get randomOTHERparticipant(participantOne) returns a random participant other than the one passed in
         String randomRespondingSpeaker(String initiatingSpeaker)
         {
             //TODO actual algorithm that return random participant
-            return participantTwo;
+            return conversationalParamaters.participantTwo;
         }
     }
 }

@@ -143,8 +143,12 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
                                     //newNode.addGradeable(subStrings);
                                     break;
 
-                                case "descriptor":
-                                    newNode.addClassDescriptor(parseDescriptor(subStrings));
+                                case "ability":
+                                    newNode.addClassAbility(parseDescriptor(subStrings));
+                                    break;
+
+                                case "attribute":
+                                    newNode.addClassAttribute(parseDescriptor(subStrings));
                                     break;
 
                                 /*case "comesfrom":
@@ -381,16 +385,28 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 
                     switch (currentParamater[0].Trim().ToLower())
                     {
-                        case "descriptor":
-                            //ignore
+                        case "ability":
+                            result.verb = "can";
+                            break;
+
+                        case "attribute":
+                            result.verb = "is";
                             break;
 
                         case "trait":
                             result.trait = currentParamater[1];
                             break;
 
+                        case "adjective":
+                            result.trait = currentParamater[1];
+                            break;
+
                         case "verb":
                             result.verb = currentParamater[1];
+                            break;
+
+                        case "adverb":
+                            result.adverb = currentParamater[1];
                             break;
 
                         case "preposition":
@@ -407,10 +423,6 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 
                         case "tense":
                             result.tense = (Tense)Enum.Parse(typeof(Tense), currentParamater[1]);
-                            break;
-
-                        case "ability":
-                            result.ability = parseBoolean(currentParamater[1]);
                             break;
 
                         case "probability":

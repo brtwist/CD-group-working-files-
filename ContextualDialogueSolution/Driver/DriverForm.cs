@@ -43,6 +43,7 @@ namespace DriverNamespace
             //disable output field and re-enable loadbutton
             outputGroupBox.Enabled = false;
             loadWorldButton.Enabled = true;
+            openToolStripMenuItem.Enabled = true;
 
         }
 
@@ -55,12 +56,16 @@ namespace DriverNamespace
         {
             loadWorld();
             loadWorldButton.Enabled = false;
+            openToolStripMenuItem.Enabled = false;
         }
 
         private void CreateConvoButton_Click(object sender, EventArgs e)
         {
+            ConversationalParamaters cParams = new ConversationalParamaters(ConversationalParamaters.conversationType.helloOnly, "Agent 1", "Agent 2");
+            cParams.greetingMode = ConversationalParamaters.GreetingMode.fourTurn;
+
             if(dialogueGenerator.conversation == null)
-                dialogueGenerator.newConversation("Agent 1", "Agent 2");
+                dialogueGenerator.newConversation(cParams);
 
             //get everything off the output buffer
             while(dialogueGenerator.hasNextOutput())

@@ -24,9 +24,9 @@ namespace ContextualDialogue.DialogueGenerator
             vocabDictionary = new LinguisticDictionary.LinguisticDictionary();
         }
 
-        public void newConversation(String participantOne, String participantTwo/* , type, topic*/)
+        public void newConversation(ConversationalParamaters paramaters)
         {
-            conversation = new Conversation(worldManager.world, vocabDictionary, participantOne, participantTwo/*Agent2, , type, topic*/);
+            conversation = new Conversation(worldManager.world, vocabDictionary, paramaters);
             //conversation.getOutput();
         }
 

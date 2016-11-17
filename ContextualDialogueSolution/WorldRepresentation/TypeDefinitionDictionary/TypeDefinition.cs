@@ -82,16 +82,22 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
         /*verbs, pairs of verbs with adjectives and values e.g. "is. red. true" "tastes. bitter. false"*/
         //TODO make this a sorted list
         //TODO make various access levels, probably various lists
-        protected List<Descriptor> classDescriptors;//list of verb, adjective, value pairs and sometimes prepositions e.g. rhinos have horns on their head
+        protected List<Descriptor> classAbilities;//list of verb, adjective, value pairs and sometimes prepositions e.g. rhinos have horns on their head
+        protected List<Descriptor> classAttributes;
 
-        public void addClassDescriptor(Descriptor input)
+        public void addClassAbility(Descriptor input)
         {
-            classDescriptors.Add(input);
+            classAbilities.Add(input);
+        }
+
+        public void addClassAttribute(Descriptor input)
+        {
+            classAttributes.Add(input);
         }
 
         /*END ADJECTIVES*/
 
-        
+
 
         /*MISCELANEOUS PROPERTIES*/
         //comes from
@@ -116,7 +122,8 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
             //TODO initialise things
             accessLevel = AccessLevel.BLACKLIST;//by default everybody knows everything, unless explicitly blacklisted
 
-            classDescriptors = new List<Descriptor>();
+            classAttributes = new List<Descriptor>();
+            classAbilities = new List<Descriptor>();
 
         }
 

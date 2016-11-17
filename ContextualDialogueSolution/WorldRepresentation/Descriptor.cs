@@ -8,26 +8,28 @@ namespace ContextualDialogue.WorldManager
     [Serializable]
     public class Descriptor
     {
-        public String trait;//adjective
-        public String verb;
+        public String trait;
+        public String adjective;//optional e.g. ducks have FLAT bills
+
+        public String verb;//in abilities it defaults to can, in attributes it defaults to is/has
+        public String adverb;//optional e.g. cheetahs can run FAST
+
         public Preposition preposition;
 
-        public bool value;//the trait can also be negative. 'is not spicy'
-        public double probability;//goes from 0 to 1
+        public bool value;//the trait can also be negated. 'is NOT spicy'
+        public double probability;//goes from 0 to 1 e.g. curry is usually spicy. (75% of the time). unicorns always have horns (100%) pokemon are occasionally shiny (0.1%)
 
-        public bool ability;//when this is turned on modal verbs such as 'can' will be assumed. 'e.g. ducks can swim' 'penguins cannot fly'
+
+
 
         //optional:
         public Tense tense;//can use for this for e.g. 'frog was a tadpole' 'coffee was hot'
 
-        //TODO add probability. e.g. curry is usually spicy. (75% of the time). unicorns always have horns (100%) pokemon are occasionally shiny (0.1%)
-
         //empty constructor
         public Descriptor()
         {
-            //you'd better be sure and set at minimum a trait name and verb when creating this object 
+            //you'd better be sure and set at minimum a trait name and verb when creating this object
             //else you'll break stuff
-            this.verb = "is";
             this.value = true;
             this.tense = Tense.presentContinuous;
             probability = 1.0;//1 means always

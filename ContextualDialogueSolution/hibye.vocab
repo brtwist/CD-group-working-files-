@@ -31,6 +31,42 @@
 		#class end friendly
 	#class end greeting
 	
+	#class start greetingQuestion
+		#class start friendly
+			>how's it going
+		#class end friendly
+		
+		#class start formal
+			>how are you
+		#class end formal
+	#class end greetingQuestion
+	
+	#class start greetingQuestionReciprocating
+		#class start friendly
+			>what about you
+			>how about you
+			>and how are you
+			>and you
+		#class end friendly
+		
+		#class start formal
+			>and how are you
+			>how are you
+		#class end formal
+	#class end greetingQuestionReciprocating
+	
+	#class start greetingAnswer
+		#class start friendly
+		>not bad
+		>pretty good
+		#class end friendly
+		
+		#class start formal
+		>very well
+		>very good
+		#class end formal
+	#class end greetingAnswer
+	
 	#class start farewell
 		#class start normal
 			>bye

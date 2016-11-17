@@ -9,28 +9,16 @@ namespace ContextualDialogue.DialogueGenerator
 
     public partial class Conversation
     {
-        //TODO make participants actual agent objects
-        private String participantOne, participantTwo;
-
-        //mode: open-ended (keeps going till told to close) close-ended (parses whatever is initially pushed without extending) goal-orientated (keeps going till goal is reached)
-        Boolean autoGenerateQUDitems;
-
-        //type e.g. business, friendly
-        //politeness
-        //amiability
-        //tense
-
-
         private World world;
         private LinguisticDictionary.LinguisticDictionary vocabDictionary;
-        //private UtteranceGenerator utteranceGenerator;
+        private ConversationalParamaters conversationalParamaters;
         private Random r;
 
         //public String output;
         private Queue<Turn> outputQueue;//queue of utterances
 
 
-        public Conversation(World w, LinguisticDictionary.LinguisticDictionary v, String p1, String p2 /*TODO QUDitem*//*TODO boolean autogeneratequsitems*/)
+        public Conversation(World w, LinguisticDictionary.LinguisticDictionary v, ConversationalParamaters paramaters)
         {
             //init
             world = w;
@@ -43,11 +31,7 @@ namespace ContextualDialogue.DialogueGenerator
 
             outputQueue = new Queue<Turn>();
 
-            //type = 
-            participantOne = p1;
-            participantTwo = p2;
-            //location = 
-            autoGenerateQUDitems = true;//turn on by default
+            conversationalParamaters = paramaters;
             
             initQUD();
             go();
@@ -70,7 +54,7 @@ namespace ContextualDialogue.DialogueGenerator
         public void go()
         {
             //if its run out of conversation topics, make new ones (if autogenerate is turned on)
-            if (autoGenerateQUDitems && QUD.Count == 0)
+            if (conversationalParamaters.autoGenerateQUDitems && QUD.Count == 0)
                 seedQUD();
             
 
@@ -108,6 +92,7 @@ namespace ContextualDialogue.DialogueGenerator
 
                     for (int i = 0; i < p.paramaters.Length; i++)
                     {
+                    //if an exception is ever thrown here it might be becuse the name or paramaters of a production rule was wrong
                         paramaterTypes[i] = p.paramaters[i].GetType();
                     }
 

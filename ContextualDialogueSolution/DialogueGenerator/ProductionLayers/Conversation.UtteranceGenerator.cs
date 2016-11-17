@@ -339,6 +339,42 @@ namespace ContextualDialogue.DialogueGenerator
             return output;
         }
 
+        public string senseGreetingQuestion(String utterer /*politeness etc.*/)
+        {
+            String output = "";
+            int productionRule;//todo politeness
+
+            output = vocabDictionary.generateRandom("hibye/greetingQuestion");
+
+                output += "?";
+
+            return output;
+        }
+
+        public string senseGreetingQuestionReciprocating(String utterer /*politeness etc.*/)
+        {
+            String output = "";
+            int productionRule;//todo implement the politness or whatever
+
+            output = vocabDictionary.generateRandom("hibye/greetingQuestionReciprocating");
+
+            output += "?";
+
+            return output;
+        }
+
+        public string senseGreetingAnswer(String utterer /*politeness etc.*/)
+        {
+            String output = "";
+            int productionRule;//todo politeness
+
+            output = vocabDictionary.generateRandom("hibye/greetingAnswer");
+
+            output += " " + senseThanks(utterer);//todo consider putting a comma or full stop or ! in here
+
+            return output;
+        }
+
         /*FUNCTION DESCRIPTION FAREWELL
          * paramater takes politeness and friendliness and either one or two participants
          */
@@ -412,20 +448,20 @@ namespace ContextualDialogue.DialogueGenerator
             int productionRule;
 
             /*CHOOSE PRODUCTION RULE*/
-            productionRule = r.Next(1, 3);
+            productionRule = r.Next(1, 2);
 
             switch (productionRule)
             {
-                case 1:
-                    output = "thankyou very much";//polite
-                    break;
+                //case 1:
+                //    output = "thankyou very much";//polite
+                //    break;
 
-                case 2:
-                    output = "nice, thanks";
+                case 1:
+                    output = "thanks";
                     break;
 
                 default:
-                    output = "cheers";//friendly
+                    output = "thank you";//friendly
                     break;
             }
 
