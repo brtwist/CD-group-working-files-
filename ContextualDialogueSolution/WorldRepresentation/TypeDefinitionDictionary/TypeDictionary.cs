@@ -17,7 +17,7 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
             dictionary = new Dictionary<string, TypeDefinition>();
             root = new TypeDefinition("root");
             dictionary.Add("root", root);
-            loadTypeDefinitions("C:\\Users\\benjamint\\Documents\\visual studio 2015\\Projects\\ContextualDialogueSolution\\typeDictionary.typedefs");
+            loadTypeDefinitions("..\\..\\..\\typeDictionary.typedefs");
         }
 
         /*FILE LOADER

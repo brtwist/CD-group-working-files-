@@ -12,7 +12,7 @@ namespace ContextualDialogue.WorldManager
 {
     public class WorldEngine
     {
-        private String FILE_NAME = "C:\\Users\\benjamint\\Documents\\visual studio 2015\\Projects\\ContextualDialogueSolution\\savedworld.world";
+        private String FILE_NAME = "..\\..\\..\\savedworld.world";
 
         public World world;
         public TypeDictionary typeDictionary;

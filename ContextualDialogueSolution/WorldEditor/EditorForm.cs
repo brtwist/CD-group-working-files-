@@ -16,7 +16,7 @@ namespace WorldEditorNamespace
     public partial class EditorForm : Form
     {
         private WorldEngine worldManager;
-        private String FILE_NAME = "C:\\Users\\benjamint\\Documents\\visual studio 2015\\Projects\\ContextualDialogueSolution\\savedworld.world";
+        private String FILE_NAME = "..\\savedworld.world";
 
         public EditorForm()
         {

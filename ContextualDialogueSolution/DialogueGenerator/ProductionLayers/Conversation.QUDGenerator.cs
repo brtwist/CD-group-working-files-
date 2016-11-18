@@ -126,6 +126,11 @@ namespace ContextualDialogue.DialogueGenerator
             MovesQueue.Enqueue(m);
         }
 
+        private void generateRestarauntTakeOrder(QUDitem q)
+        {
+
+        }
+
         
          /*GENERATING RANDOM VALUES
          * any time a move requres info not specified in a QUDitem, that info is randomly generated

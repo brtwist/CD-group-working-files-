@@ -12,7 +12,7 @@ namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
         public LinguisticDictionary()
         {
             root = new TreeNode("root");
-            loadFile("C:\\Users\\benjamint\\Documents\\visual studio 2015\\Projects\\ContextualDialogueSolution\\hibye.vocab");
+            loadFile("..\\..\\..\\hibye.vocab");
         }
 
         //loadfromfile
