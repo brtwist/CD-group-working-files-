@@ -169,8 +169,9 @@ namespace ContextualDialogue.DialogueGenerator
         */
         public String senseAskAboutFacts(String utterer, PhysicalEntity o, Descriptor d, Tense t)
         {
-            String aux, np, pr, adj, indefiniteDeterminer, definiteDeterminer, verb = "";
+            String aux, np, pr, adj, verb = "";
             int productionRule;
+            String constituent;
             String output;
 
             /*CHOOSE PRODUCTION RULE*/
@@ -182,34 +183,7 @@ namespace ContextualDialogue.DialogueGenerator
             /*CHOOSE ADJECTIVE*/
             adj = d.trait.ToString();
 
-
-            /*CHOOSE PRONOUN*/
-            pr = "it";
-            //TODO add in other pronouns (yours, this, that, they etc.)
-
-            /*CHOOSE NOUN*/
-             Noun nounObject = o.getRandomCommonNoun();
-
-            // check if its unique and whether it has a proper name
-            if (o.hasProperNoun)
-                np = o.properNoun;
-            else
-                np = nounObject.noun;
-
-            /*CHOOSE DETERMINERS*/
-            //choose indefinite determiner: between a and an
-            if (nounObject.countable == true)
-            {
-                indefiniteDeterminer = LinguisticDictionary.LinguisticDictionary.getAorAN(d.trait);
-            }
-            else //noun is uncountable
-                indefiniteDeterminer = "";
-
-            //choose definite determiner
-            definiteDeterminer = "the";
-            //assumes singular
-
-
+            constituent = renderConstituent(o);
 
             /*RULE 1 or 2*/
             if (productionRule == 1 || productionRule == 2)
@@ -259,14 +233,14 @@ namespace ContextualDialogue.DialogueGenerator
 
                 if (t == Tense.future)
                 {
-                    output = aux + " " + definiteDeterminer + " " + np + " " + verb + " " + adj + "?";
+                    output = aux + " " + constituent + verb + " " + adj + "?";
                 }
                 else
                 {
                     if (productionRule == 1)
-                        output = aux + " " + definiteDeterminer + " " + np + " " + adj + "?";
+                        output = aux + " " + constituent + " " + adj + "?";
                     else /*Production rule 2*/
-                        output = aux + " " + pr + " " + adj + "?" + " ( " + pr + " -> " + definiteDeterminer + " " + np + " )";
+                        output = aux + " " + constituent + " " + adj + "?";
                 }
 
                 //return aux + pr + adj + np
@@ -285,7 +259,7 @@ namespace ContextualDialogue.DialogueGenerator
                 /*CHOOSE VERB*/
                 verb = d.verb.ToString();
 
-                output = aux + " " + " " + definiteDeterminer + " " + np + " " + verb + " " + adj + "?";
+                output = aux + " " + constituent + " " + verb + " " + adj + "?";
             }
 
             //remove duplicate whitespace
@@ -297,6 +271,45 @@ namespace ContextualDialogue.DialogueGenerator
             return output;
         }
 
+        //render noun constituent
+        public String renderConstituent(PhysicalEntity o)
+        {
+            String output;
+
+            //first check whether itshould be a pronoun
+            //todo
+
+            /*CHOOSE PRONOUN*/
+            output = "it";
+            //TODO add in other pronouns (yours, this, that, they etc.)
+
+            /*CHOOSE NOUN*/
+             Noun nounObject = o.getRandomCommonNoun();
+
+            // check if its unique and whether it has a proper name
+            if (o.hasProperNoun)
+                output = o.properNoun;
+            else
+                output = "the" + nounObject.noun;
+
+            /*CHOOSE DETERMINERS*/
+            //choose indefinite determiner: between a and an
+            //if (nounObject.countable == true)
+            //{
+            //    indefiniteDeterminer = LinguisticDictionary.LinguisticDictionary.getAorAN(d.trait);
+            //}
+            //else //noun is uncountable
+            //    indefiniteDeterminer = "";
+
+            //choose definite determiner
+            //definiteDeterminer = "the";
+            //assumes singular
+
+            return output;
+
+        }
+
+
 
 
         /*FUNCTION DESCRIPTION GREETING
@@ -307,28 +320,7 @@ namespace ContextualDialogue.DialogueGenerator
         {
             String output = "";
             int productionRule;
-
-            /*CHOOSE PRODUCTION RULE*/
-            //productionRule = r.Next(1, 4);
-
-            //switch (productionRule)
-            //{
-            //    case 1:
-            //        output = "hi";
-            //        break;
-
-            //    case 2:
-            //        output = "hello";
-            //        break;
-
-            //    case 3:
-            //        output = "hey";
-            //        break;
-
-            //    default:
-            //        output = "heyy";
-            //        break;
-            //}
+            
 
             output = vocabDictionary.generateRandom("hibye/greeting");
 

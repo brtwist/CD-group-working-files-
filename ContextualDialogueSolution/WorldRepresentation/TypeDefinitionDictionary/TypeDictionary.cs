@@ -205,8 +205,8 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
             //TODO WILL BREAK IF NOT FOUND
 
             //TODO FOLLOWING TWO LINES FOR DEBUGGING ONLY
-            //String[] foos = new string[dictionary.Count];
-            //dictionary.Keys.CopyTo(foos, 0);
+            String[] foos = new string[dictionary.Count];
+            dictionary.Keys.CopyTo(foos, 0);
 
 
             //try

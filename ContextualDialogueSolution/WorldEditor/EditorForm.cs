@@ -33,7 +33,7 @@ namespace WorldEditorNamespace
             //insert objects
             PhysicalEntity pe0;
 
-            pe0 = new PhysicalEntity(worldManager.typeDictionary.tryGetValue("region"));
+            pe0 = new PhysicalEntity(worldManager.typeDictionary.tryGetValue("area"));
             pe0.properNoun = "Europe";
             pe0.oneOfAKind = true;
             int europe = worldManager.world.add(pe0);//int is the ID of the object
@@ -60,6 +60,13 @@ namespace WorldEditorNamespace
             pe3.oneOfAKind = true;
 
             int NRW = worldManager.world.add(pe3);//int is the ID of the object
+
+            PhysicalEntity pe4 = new PhysicalEntity(worldManager.typeDictionary.tryGetValue("area"));
+            pe4.properNoun = "Westerberg Campus";
+            pe4.setSpatialParent(Preposition.@in, pe3);
+            pe4.oneOfAKind = true;
+
+            int westerberg = worldManager.world.add(pe4);//int is the ID of the object
 
 
 

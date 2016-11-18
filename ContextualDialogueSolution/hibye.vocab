@@ -34,6 +34,8 @@
 	#class start greetingQuestion
 		#class start friendly
 			>how's it going
+			>how are you
+			>how is everything going
 		#class end friendly
 		
 		#class start formal
