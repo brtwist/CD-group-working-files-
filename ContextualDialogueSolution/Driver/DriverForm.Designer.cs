@@ -48,6 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.worldNameLabel = new System.Windows.Forms.Label();
             this.outputGroupBox = new System.Windows.Forms.GroupBox();
+            this.EndConvoButton = new System.Windows.Forms.Button();
             this.conversationTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.agent2omboBox2 = new System.Windows.Forms.ComboBox();
@@ -59,7 +60,6 @@
             this.createConvoButton = new System.Windows.Forms.Button();
             this.outputRichTextBox = new System.Windows.Forms.RichTextBox();
             this.loadWorldButton = new System.Windows.Forms.Button();
-            this.EndConvoButton = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.outputGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -227,6 +227,16 @@
             this.outputGroupBox.TabStop = false;
             this.outputGroupBox.Text = "conversationGroupBox";
             // 
+            // EndConvoButton
+            // 
+            this.EndConvoButton.Location = new System.Drawing.Point(284, 158);
+            this.EndConvoButton.Name = "EndConvoButton";
+            this.EndConvoButton.Size = new System.Drawing.Size(82, 23);
+            this.EndConvoButton.TabIndex = 12;
+            this.EndConvoButton.Text = "Farewell!";
+            this.EndConvoButton.UseVisualStyleBackColor = true;
+            this.EndConvoButton.Click += new System.EventHandler(this.EndConvoButton_Click);
+            // 
             // conversationTypeComboBox
             // 
             this.conversationTypeComboBox.FormattingEnabled = true;
@@ -255,6 +265,8 @@
             // agent1ComboBox
             // 
             this.agent1ComboBox.FormattingEnabled = true;
+            this.agent1ComboBox.Items.AddRange(new object[] {
+            "Agent 1"});
             this.agent1ComboBox.Location = new System.Drawing.Point(61, 48);
             this.agent1ComboBox.Name = "agent1ComboBox";
             this.agent1ComboBox.Size = new System.Drawing.Size(149, 21);
@@ -325,16 +337,6 @@
             this.loadWorldButton.Text = "Load World";
             this.loadWorldButton.UseVisualStyleBackColor = true;
             this.loadWorldButton.Click += new System.EventHandler(this.loadWorldButton_Click);
-            // 
-            // EndConvoButton
-            // 
-            this.EndConvoButton.Location = new System.Drawing.Point(284, 158);
-            this.EndConvoButton.Name = "EndConvoButton";
-            this.EndConvoButton.Size = new System.Drawing.Size(82, 23);
-            this.EndConvoButton.TabIndex = 12;
-            this.EndConvoButton.Text = "Farewell!";
-            this.EndConvoButton.UseVisualStyleBackColor = true;
-            this.EndConvoButton.Click += new System.EventHandler(this.EndConvoButton_Click);
             // 
             // DriverForm
             // 

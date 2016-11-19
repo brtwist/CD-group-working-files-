@@ -126,10 +126,10 @@ namespace ContextualDialogue.DialogueGenerator
             MovesQueue.Enqueue(m);
         }
 
-        private void generateRestarauntTakeOrder(QUDitem q)
-        {
+        //private void generateRestarauntTakeOrder(QUDitem q)
+        //{
 
-        }
+        //}
 
         
          /*GENERATING RANDOM VALUES

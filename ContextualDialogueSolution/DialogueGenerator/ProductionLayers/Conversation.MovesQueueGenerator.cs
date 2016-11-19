@@ -25,12 +25,12 @@ namespace ContextualDialogue.DialogueGenerator
             /*ADD GREETING SEQUENCE*/
             MovesQueueItem q = new MovesQueueItem();
             q.methodToCall = "senseGreeting";
-            q.paramaters = new object[1] { conversationalParamaters.participantOne };
+            q.paramaters = new object[2] { conversationalParamaters.participantOne, conversationalParamaters.participantTwo };
             MovesQueue.Enqueue(q);
 
             q = new MovesQueueItem();
             q.methodToCall = "senseGreeting";
-            q.paramaters = new object[1] { conversationalParamaters.participantTwo };
+            q.paramaters = new object[2] { conversationalParamaters.participantTwo, conversationalParamaters.participantOne };
             MovesQueue.Enqueue(q);
 
         }
@@ -66,18 +66,19 @@ namespace ContextualDialogue.DialogueGenerator
 
         public void parseFarewellPhase(int dummy)
         {
-            //TODO check type of convo and what type of goodbye it requires
+            //check type of convo and what type of goodbye it requires
+            if (conversationalParamaters.farewellMode == ConversationalParamaters.FarewellMode.simple)
+            {
+                MovesQueueItem q = new MovesQueueItem();
+                q.methodToCall = "senseFarewell";
+                q.paramaters = new object[2] { conversationalParamaters.participantOne, conversationalParamaters.participantTwo };
+                MovesQueue.Enqueue(q);
 
-
-            MovesQueueItem q = new MovesQueueItem();
-            q.methodToCall = "senseFarewell";
-            q.paramaters = new object[1] { conversationalParamaters.participantOne };
-            MovesQueue.Enqueue(q);
-
-            q = new MovesQueueItem();
-            q.methodToCall = "senseFarewell";
-            q.paramaters = new object[1] { conversationalParamaters.participantTwo };
-            MovesQueue.Enqueue(q);           
+                q = new MovesQueueItem();
+                q.methodToCall = "senseFarewell";
+                q.paramaters = new object[2] { conversationalParamaters.participantTwo, conversationalParamaters.participantOne };
+                MovesQueue.Enqueue(q);
+            }
 
         }
 

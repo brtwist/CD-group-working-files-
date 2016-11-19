@@ -316,13 +316,17 @@ namespace ContextualDialogue.DialogueGenerator
          * paramater takes politeness and friendliness and either one or two participants
          */
         //TODO overloaded version that includes name or title of the person being greeted
-        public string senseGreeting(String utterer /*politeness etc.*/)
+        public string senseGreeting(String utterer, String otherPerson /*politeness etc.*/)
         {
             String output = "";
             int productionRule;
             
 
             output = vocabDictionary.generateRandom("hibye/greeting");
+
+            //50% chance of using other persons name
+            if (r.NextDouble() > 0.5f)
+                output += " " + otherPerson;
 
             //50% chance of explamation point
             if (r.NextDouble() > 0.5f)
@@ -371,13 +375,17 @@ namespace ContextualDialogue.DialogueGenerator
          * paramater takes politeness and friendliness and either one or two participants
          */
         //TODO overloaded version that includes name or title of the person being greeted
-        public string senseFarewell(String utterer /*politeness etc.*/)
+        public string senseFarewell(String utterer, String otherPerson /*politeness etc.*/)
         {
             String output = "";
             int productionRule;
 
             /*QUERY DICTIONARY*/
             output = vocabDictionary.generateRandom("hibye/farewell");
+
+            //50% chance of using other persons name
+            if (r.NextDouble() > 0.5f)
+                output += " " + otherPerson;
 
             //50% chance of explamation point
             if (r.NextDouble() > 0.5f)

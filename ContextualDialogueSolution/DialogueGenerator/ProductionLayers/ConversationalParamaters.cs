@@ -14,7 +14,7 @@ namespace ContextualDialogue.DialogueGenerator
         public String participantTwo;
 
         //tone/type e.g. heloOnly, friendly, business, restaraunt
-        public enum conversationType { helloOnly } //SocialCatchUp, SocialGettingToKnowYou
+        public enum conversationType { helloOnly, businessShortExchange } //SocialCatchUp, SocialGettingToKnowYou
 
         //QUD item that will be discussed (inserted into body by default) 
         public QUDitem userSpecifiedQUDitem;
@@ -27,8 +27,11 @@ namespace ContextualDialogue.DialogueGenerator
 
         //int smallTalkMode; //none, smalltalk, catchup, gettingToKnowYou
 
-        public enum FarewellMode { none, twoTurn, fourTurn }
+        public enum FarewellMode { none, simple }
         public FarewellMode farewellMode;//none, 2stroke, 4stroke
+
+        //public enum PolitenessMode { friendly, normal, polite }
+        
 
         //constructor chooses default settings
         public ConversationalParamaters(conversationType cType, String pOne, String pTwo)
@@ -40,7 +43,7 @@ namespace ContextualDialogue.DialogueGenerator
 
             greetingMode = GreetingMode.twoTurn;
             //smallTalkMode = 0;
-            farewellMode = FarewellMode.twoTurn;
+            farewellMode = FarewellMode.simple;
             autoGenerateQUDitems = false;//off by default
 
 
@@ -49,6 +52,10 @@ namespace ContextualDialogue.DialogueGenerator
                 {
                 case conversationType.helloOnly:
                     setDefaultsForHelloOnly();
+                    break;
+
+                case conversationType.businessShortExchange:
+                    setDefaultsForBusinessShortExchange();
                     break;
 
                 default:
@@ -63,12 +70,25 @@ namespace ContextualDialogue.DialogueGenerator
             //intended to simulate passing greeting where neither speaker really stops walking
             autoGenerateQUDitems = false;
             //since no conversation was really had, no goodbye is necessary
-            farewellMode = FarewellMode.none;
+            farewellMode = FarewellMode.simple;//TODO change this to none one day
 
             //1/3 chance of giving a 4turn hello instead of default 2turn
             if (r.NextDouble() < 0.33)
                 greetingMode = GreetingMode.fourTurn;
         }
+
+        private void setDefaultsForBusinessShortExchange()
+        {
+            //intended to simulate ver short exchanges such as asking a question at the reception 
+            //desk of a hotel. no 'how are you's' just short and to the point
+            autoGenerateQUDitems = false;
+            
+            greetingMode = GreetingMode.twoTurn;
+            farewellMode = FarewellMode.simple;
+
+            
+        }
+
         //sets default/random values for anything the user doesnt specify
         private void autoFillUnspecifiedParamaters()
         {

@@ -49,7 +49,22 @@ namespace DriverNamespace
 
         private void updateOutput(ContextualDialogue.DialogueGenerator.Turn output)
         {
-            outputRichTextBox.AppendText(output.participant.ToString() + " says: " + output.utterance + "\n");
+            
+            int start = outputRichTextBox.TextLength;
+            outputRichTextBox.AppendText(output.participant.ToString() + "| " + output.utterance + "\n");
+
+            int end = outputRichTextBox.TextLength;
+
+            // Textbox may transform chars, so (end-start) != text.Length
+            outputRichTextBox.Select(start, end);
+            {
+                if(output.participant.ToString().CompareTo("Agent 1") == 0)
+                    outputRichTextBox.SelectionColor = Color.Blue;
+                if (output.participant.ToString().CompareTo("Agent 2") == 0)
+                    outputRichTextBox.SelectionColor = Color.Green;
+
+            }
+            outputRichTextBox.SelectionLength = 0; // clear
         }
 
         private void loadWorldButton_Click(object sender, EventArgs e)
@@ -83,7 +98,8 @@ namespace DriverNamespace
             while (dialogueGenerator.hasNextOutput())
                 updateOutput(dialogueGenerator.getOutput());
 
-            
+            outputRichTextBox.AppendText("------------------------------------------------------------------------");
+
             loadWorld();//reset the world and wipe the existing convo object
         }
     }
