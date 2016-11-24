@@ -1,9 +1,6 @@
 ﻿//namespaces
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using ContextualDialogue.DialogueGenerator;
-using ContextualDialogue.WorldManager;
 
 namespace DriverNamespace
 {

@@ -1,8 +1,5 @@
-﻿using System;
+﻿using EnumNamespace;
 using System.Collections.Generic;
-using System.Text;
-using ContextualDialogue.WorldManager;
-using EnumNamespace;
 
 namespace ContextualDialogue.DialogueGenerator
 {
@@ -14,29 +11,29 @@ namespace ContextualDialogue.DialogueGenerator
             public string methodToCall;
             public /*params*/ object[] paramaters;
         }
-        
+
         //queue of MovesQueue items for processing
         private Queue<MovesQueueItem> MovesQueue;
 
-        public void parseGreetingPhase(int dummy)
+        public void parseGreetingPhase(QUDitem quditem)
         {
             //TODO check variables like what type of conversation is happening
 
             /*ADD GREETING SEQUENCE*/
             MovesQueueItem q = new MovesQueueItem();
             q.methodToCall = "senseGreeting";
-            q.paramaters = new object[2] { conversationalParamaters.participantOne, conversationalParamaters.participantTwo };
+            q.paramaters = new object[2] { quditem.initiatingSpeaker, quditem.respondingSpeaker };
             MovesQueue.Enqueue(q);
 
             q = new MovesQueueItem();
             q.methodToCall = "senseGreeting";
-            q.paramaters = new object[2] { conversationalParamaters.participantTwo, conversationalParamaters.participantOne };
+            q.paramaters = new object[2] { quditem.respondingSpeaker, quditem.initiatingSpeaker };
             MovesQueue.Enqueue(q);
 
         }
 
         /*this is used for the additional two turns in a fourTurn greeting*/
-        public void parseGreetingPhaseQuestions(int dummy)
+        public void parseGreetingPhaseQuestions(QUDitem quditem)
         {
             //TODO check variables like what type of conversation is happening
 
@@ -45,38 +42,52 @@ namespace ContextualDialogue.DialogueGenerator
 
             q = new MovesQueueItem();
             q.methodToCall = "senseGreetingQuestion";
-            q.paramaters = new object[1] { conversationalParamaters.participantOne };
+            q.paramaters = new object[1] { quditem.initiatingSpeaker };
             MovesQueue.Enqueue(q);
 
             q = new MovesQueueItem();
             q.methodToCall = "senseGreetingAnswer";
-            q.paramaters = new object[1] { conversationalParamaters.participantTwo };
+            q.paramaters = new object[1] { quditem.respondingSpeaker };
             MovesQueue.Enqueue(q);
 
             q = new MovesQueueItem();
             q.methodToCall = "senseGreetingQuestionReciprocating";
-            q.paramaters = new object[1] { conversationalParamaters.participantTwo };
+            q.paramaters = new object[1] { quditem.respondingSpeaker };
             MovesQueue.Enqueue(q);
 
             q = new MovesQueueItem();
             q.methodToCall = "senseGreetingAnswer";
-            q.paramaters = new object[1] { conversationalParamaters.participantOne };
+            q.paramaters = new object[1] { quditem.initiatingSpeaker };
             MovesQueue.Enqueue(q);
         }
 
-        public void parseFarewellPhase(int dummy)
+        /*used to ask about where something is*/
+        public void parseExchangeWhere(QUDitem quditem)
+        {
+            MovesQueueItem q = new MovesQueueItem();
+            q.methodToCall = "senseAskAboutWhere";
+            q.paramaters = new object[3] { quditem.initiatingSpeaker, quditem.subject, Tense.present };
+            MovesQueue.Enqueue(q);
+
+            q = new MovesQueueItem();
+            q.methodToCall = "senseTellAboutWhere";
+            q.paramaters = new object[3] { quditem.respondingSpeaker, quditem.subject, conversationalParamaters.conversationLocation };
+            MovesQueue.Enqueue(q);
+        }
+
+        public void parseFarewellPhase(QUDitem quditem)
         {
             //check type of convo and what type of goodbye it requires
             if (conversationalParamaters.farewellMode == ConversationalParamaters.FarewellMode.simple)
             {
                 MovesQueueItem q = new MovesQueueItem();
                 q.methodToCall = "senseFarewell";
-                q.paramaters = new object[2] { conversationalParamaters.participantOne, conversationalParamaters.participantTwo };
+                q.paramaters = new object[2] { quditem.initiatingSpeaker, quditem.respondingSpeaker };
                 MovesQueue.Enqueue(q);
 
                 q = new MovesQueueItem();
                 q.methodToCall = "senseFarewell";
-                q.paramaters = new object[2] { conversationalParamaters.participantTwo, conversationalParamaters.participantOne };
+                q.paramaters = new object[2] { quditem.respondingSpeaker, quditem.initiatingSpeaker };
                 MovesQueue.Enqueue(q);
             }
 

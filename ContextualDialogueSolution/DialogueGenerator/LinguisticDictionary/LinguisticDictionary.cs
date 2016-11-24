@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
 {
@@ -62,7 +60,7 @@ namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
                                     {
                                         line = subStrings[i];
                                         if (/*line.Contains("=") &&*/ line[line.LastIndexOf('=') - 1].CompareTo('S') == 0) //if the character before the = is S ...
-                                            newNode.saliency = double.Parse( line.Substring(line.LastIndexOf('=') + 1));//returns number directly after the = 
+                                            newNode.saliency = double.Parse(line.Substring(line.LastIndexOf('=') + 1));//returns number directly after the = 
                                     }
                                 }
 
@@ -86,7 +84,7 @@ namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
                         subStrings = line.Split('|');
                         DictionaryEntry newEntry = new DictionaryEntry(subStrings[0].Substring(1).Trim());
 
-                        
+
                         if (subStrings.Length > 1)//check for additional paramaters like saliency
                         {
                             for (int i = 1; i < subStrings.Length; i++)//if there are paramaters process them one at a time
@@ -125,7 +123,7 @@ namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
         {
             //first traverse to target node
             TreeNode node = TraverseToNode(path);
-            
+
             return node.getRandomEntry();
         }
         //search entry-type
@@ -143,19 +141,19 @@ namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
 
             return TraverseToNode(root, substrings);
         }
-        
-         /*takes a node and an array of strings representing a path through the tree
-          recursively processes path until it returns the destination node*/
+
+        /*takes a node and an array of strings representing a path through the tree
+         recursively processes path until it returns the destination node*/
         private TreeNode TraverseToNode(TreeNode currentNode, String[] oldPath)
         {
             while (oldPath.Length > 0)//while (not found)
             {
                 //make a new string array, one slot smaller than previously
                 String[] newPath = new String[oldPath.Length - 1];
-                
+
                 //copy all but one element of old path into new path
                 Array.Copy(oldPath, 1, newPath, 0, newPath.Length);
-               
+
 
                 //submit new path as recursive search paramater
                 //TODO probably breaks if not found

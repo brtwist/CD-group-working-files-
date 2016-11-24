@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
+﻿using ContextualDialogue.WorldManager;
 using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
-using ContextualDialogue.WorldManager;
 using EnumNamespace;
+using System;
+using System.Windows.Forms;
 
 
 namespace WorldEditorNamespace
@@ -123,7 +117,7 @@ namespace WorldEditorNamespace
             worldGroupBox.Text = "World: " + worldManager.world.worldName;
 
             worldListBox.Items.Clear();
-            worldListBox.Items.AddRange(worldManager.world.getAllphysicalEntitiesToString() );
+            worldListBox.Items.AddRange(worldManager.world.getAllphysicalEntitiesToString());
         }
 
         private void saveWorld()

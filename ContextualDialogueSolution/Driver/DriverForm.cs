@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+﻿using ContextualDialogue.DialogueGenerator;
 using ContextualDialogue.WorldManager;
-using ContextualDialogue.DialogueGenerator;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace DriverNamespace
 {
@@ -20,7 +16,7 @@ namespace DriverNamespace
             InitializeComponent();
             worldManager = new WorldEngine();
 
-            
+
         }
 
         private void loadWorld()
@@ -49,7 +45,7 @@ namespace DriverNamespace
 
         private void updateOutput(ContextualDialogue.DialogueGenerator.Turn output)
         {
-            
+
             int start = outputRichTextBox.TextLength;
             outputRichTextBox.AppendText(output.participant.ToString() + "| " + output.utterance + "\n");
 
@@ -58,7 +54,7 @@ namespace DriverNamespace
             // Textbox may transform chars, so (end-start) != text.Length
             outputRichTextBox.Select(start, end);
             {
-                if(output.participant.ToString().CompareTo("Agent 1") == 0)
+                if (output.participant.ToString().CompareTo("Agent 1") == 0)
                     outputRichTextBox.SelectionColor = Color.Blue;
                 if (output.participant.ToString().CompareTo("Agent 2") == 0)
                     outputRichTextBox.SelectionColor = Color.Green;
@@ -74,20 +70,30 @@ namespace DriverNamespace
             openToolStripMenuItem.Enabled = false;
         }
 
+        /*this is the entry point for the dialogue manager*/
         private void CreateConvoButton_Click(object sender, EventArgs e)
         {
             ConversationalParamaters cParams = new ConversationalParamaters(ConversationalParamaters.conversationType.helloOnly, "Agent 1", "Agent 2");
             cParams.greetingMode = ConversationalParamaters.GreetingMode.fourTurn;
+            cParams.farewellMode = ConversationalParamaters.FarewellMode.simple;//by default conversation type helloOnly doesnt have a farewell
+            cParams.conversationLocation = worldManager.world.findByProperNoun("Germany");
 
-            if(dialogueGenerator.conversation == null)
+            QUDitem q = new QUDitem(QUDitem.ExchangeTypeEnum.where);
+            q.subject = worldManager.world.findByProperNoun("Westerberg Campus");
+
+            cParams.addQUDitem(q);
+
+
+
+            if (dialogueGenerator.conversation == null)
                 dialogueGenerator.newConversation(cParams);
 
             //get everything off the output buffer
-            while(dialogueGenerator.hasNextOutput())
+            while (dialogueGenerator.hasNextOutput())
                 updateOutput(dialogueGenerator.getOutput());
 
             EndConvoButton.Enabled = true;
-       
+
         }
 
         private void EndConvoButton_Click(object sender, EventArgs e)
@@ -98,7 +104,7 @@ namespace DriverNamespace
             while (dialogueGenerator.hasNextOutput())
                 updateOutput(dialogueGenerator.getOutput());
 
-            outputRichTextBox.AppendText("------------------------------------------------------------------------");
+            outputRichTextBox.AppendText("------------------------------------------------------------------------\n");
 
             loadWorld();//reset the world and wipe the existing convo object
         }

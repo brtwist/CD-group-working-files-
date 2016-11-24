@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
+using System;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
 
 /*this is the main starting point for the knowledge manager. it provides a wrapper for loading and saving various parts of world knowledge*/
 

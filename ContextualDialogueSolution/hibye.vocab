@@ -35,6 +35,7 @@
 		#class start friendly
 			>how's it going
 			>how are you
+			>how are you doing
 			>how is everything going
 		#class end friendly
 		
@@ -48,7 +49,9 @@
 			>what about you
 			>how about you
 			>and how are you
+			>and how are you doing
 			>and you
+			>you
 		#class end friendly
 		
 		#class start formal
@@ -60,6 +63,7 @@
 	#class start greetingAnswer
 		#class start friendly
 		>not bad
+		>not too bad
 		>pretty good
 		#class end friendly
 		

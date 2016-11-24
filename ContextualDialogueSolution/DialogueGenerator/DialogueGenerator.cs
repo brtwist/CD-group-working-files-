@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ContextualDialogue.WorldManager;
-using ContextualDialogue.DialogueGenerator.LinguisticDictionary;
-using EnumNamespace;
+﻿using ContextualDialogue.WorldManager;
 
 namespace ContextualDialogue.DialogueGenerator
 {

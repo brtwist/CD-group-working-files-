@@ -1,8 +1,7 @@
-﻿using System;
-using ContextualDialogue.WorldManager;
-using EnumNamespace;
+﻿using ContextualDialogue.WorldManager;
 using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
-using ContextualDialogue.DialogueGenerator.LinguisticDictionary;
+using EnumNamespace;
+using System;
 
 namespace ContextualDialogue.DialogueGenerator
 {
@@ -10,13 +9,6 @@ namespace ContextualDialogue.DialogueGenerator
     //{
     public partial class Conversation //UtteranceGenerator
     {
-        //private Random r;
-
-        //public UtteranceGenerator(Random rIn)
-        //{
-        //    r = rIn;
-        //}
-
 
         /*FUNCTION DESCRIPTION REQUEST FOR ACTION
          * paramater takes politeness and friendliness ... along with a delegate of the question itself?
@@ -158,6 +150,37 @@ namespace ContextualDialogue.DialogueGenerator
             return output;
         }
 
+        /*tells the location of an object, pragmatically taking into account the location of the conversation
+         * 1)the x is in spatialGrandparent, in spatialParent
+         */
+        public String senseTellAboutWhere(String utterer, PhysicalEntity entitySubject, PhysicalEntity conversationLocation)
+        {
+            String subject, preposition, spatialParent;
+            String output = "";
+
+            subject = renderConstituent(entitySubject);
+
+            
+            
+            PhysicalEntity[] path = world.getLocationARelativeToB(conversationLocation, entitySubject);
+
+            /*at this point we have the direct path from the lowest common ancestor to the subject
+             * now we will render that into a string*/
+            if (path.Length <= 2)
+                return "this is " + subject;
+
+            int count = path.Length -2;
+            while (count > 0)
+            {
+                output += " " + path[count].getSpatialparent().preposition.ToString() + " " + renderConstituent(path[count]);
+                count--;
+            }
+
+            //assemble output
+            output = subject + " is " + output;
+
+            return output;
+        }
 
         /*FUNCTION DESCRIPRION ASK ABOUT FACTS (ask about descriptors)
         * Paramaters expects either a type or a specfici object. plus an enum adjective
@@ -175,7 +198,7 @@ namespace ContextualDialogue.DialogueGenerator
             String output;
 
             /*CHOOSE PRODUCTION RULE*/
-            if (t == Tense.future || d.verb.CompareTo("is")==0/*ie descriptor has no special verb*/)//exclude rule 3 based on constraints
+            if (t == Tense.future || d.verb.CompareTo("is") == 0/*ie descriptor has no special verb*/)//exclude rule 3 based on constraints
                 productionRule = r.Next(1, 1 /*make it 3 to allow pronouns rule*/);//excludes rule 3
             else //tense != future
                 productionRule = r.Next(1, 4);
@@ -284,7 +307,7 @@ namespace ContextualDialogue.DialogueGenerator
             //TODO add in other pronouns (yours, this, that, they etc.)
 
             /*CHOOSE NOUN*/
-             Noun nounObject = o.getRandomCommonNoun();
+            Noun nounObject = o.getRandomCommonNoun();
 
             // check if its unique and whether it has a proper name
             if (o.hasProperNoun)
@@ -320,7 +343,7 @@ namespace ContextualDialogue.DialogueGenerator
         {
             String output = "";
             int productionRule;
-            
+
 
             output = vocabDictionary.generateRandom("hibye/greeting");
 
@@ -342,7 +365,7 @@ namespace ContextualDialogue.DialogueGenerator
 
             output = vocabDictionary.generateRandom("hibye/greetingQuestion");
 
-                output += "?";
+            output += "?";
 
             return output;
         }

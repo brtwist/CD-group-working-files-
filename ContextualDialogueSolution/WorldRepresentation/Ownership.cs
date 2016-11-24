@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
+﻿using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
 
 /*
  * this class represents the relationship of ownership.

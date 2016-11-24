@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EnumNamespace;
+﻿using EnumNamespace;
+using System;
 
 namespace ContextualDialogue.WorldManager
 {

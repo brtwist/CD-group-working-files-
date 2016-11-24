@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 {
@@ -20,7 +18,7 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
             get { return properNoun != null; }
         }
 
-        public Noun getRandomCommonNoun() { return typeDefinition.getRandomCommonNoun();}
+        public Noun getRandomCommonNoun() { return typeDefinition.getRandomCommonNoun(); }
 
         //private Boolean isCountable { get; set; }//much vs many
         private Boolean isUnique { get; set; }//an Eiffel tower vs The Eifel tower
@@ -30,8 +28,8 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 
         //main preposition, i.e. parentNode
         private SpatialLocation spatialParent;
-        public SpatialLocation getSpatialparent() { return spatialParent;  }
-        public Boolean hasSpatialParent() { return spatialParent == null; }
+        public SpatialLocation getSpatialparent() { return spatialParent; }
+        public Boolean hasSpatialParent() { return spatialParent != null; }
 
         //list of secondary prepositions e.g. 'b is ALONG the road from a'
         /*END POSITION*/
@@ -77,7 +75,7 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
         {
             typeDefinition = type;
             string test = type.typeName;
-            
+
             //TODO??
 
         }
@@ -100,7 +98,7 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 
             if (this.spatialParent != null)
             {
-                if(spatialParent.adult.hasProperNoun)
+                if (spatialParent.adult.hasProperNoun)
                     result += spatialParent.preposition.ToString() + " " +
                 spatialParent.adult.properNoun;
                 else

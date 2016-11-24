@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
+using System;
 using System.Collections;
-using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
+using System.Collections.Generic;
 
 
 /*contains all the knowledge of the world, in searchable form*/
@@ -16,7 +15,7 @@ namespace ContextualDialogue.WorldManager
         private TypeDictionary typeDictionary;
         private ArrayList worldArray;
         //public ObjectDictionary objectDictionary;
-        
+
         //private 
         //list sorted by preposition
 
@@ -39,7 +38,7 @@ namespace ContextualDialogue.WorldManager
             k.ID = k.GetHashCode()/*k.nodeName + r.NextDouble().ToString()*/;
             return k.ID;//now the game has a copy of the ID used to identify this object
         }
-        
+
         /*SEARCH METHODS*/
 
         public PhysicalEntity findByID(int IDtoFind)
@@ -54,6 +53,61 @@ namespace ContextualDialogue.WorldManager
             return null;
         }
 
+        public PhysicalEntity findByProperNoun(String NounToFind)
+        {
+            //TODO commmmee onn. this is a linear search
+            foreach (PhysicalEntity i in worldArray)
+            {
+                if (i.hasProperNoun)
+                {
+                    if (i.properNoun.CompareTo(NounToFind) == 0)
+                        return i;
+                }
+            }
+            //else ID not found
+            return null;
+        }
+
+        
+         /*returns the most specific location common to both entities
+         * first find lowest common ancestor using LCA algorithm: 
+         * first save the paths from the root node to each entity. 
+         * second compare paths node by node, starting at root
+         * when the paths are no longer the same, they have diverged and lowest common ancestor was reached        
+         * 
+         * now having found the LCA, return the path from there to entityB
+         */
+        public PhysicalEntity[] getLocationARelativeToB(PhysicalEntity entityA, PhysicalEntity entityB)
+        {
+            ArrayList pathAtoRoot = new ArrayList();
+            ArrayList pathBtoRoot = new ArrayList();
+            pathAtoRoot.Add(entityA);
+            pathBtoRoot.Add(entityB);
+
+            while (((PhysicalEntity)pathAtoRoot[pathAtoRoot.Count -1]).hasSpatialParent())
+            {
+                pathAtoRoot.Add(((PhysicalEntity)pathAtoRoot[pathAtoRoot.Count - 1]).getSpatialparent().adult );
+            }
+
+            while (((PhysicalEntity)pathBtoRoot[pathBtoRoot.Count - 1]).hasSpatialParent())
+            {
+                pathBtoRoot.Add(((PhysicalEntity)pathBtoRoot[pathBtoRoot.Count - 1]).getSpatialparent().adult);
+            }
+
+            //while the nodes are the same, keep popping off the head node
+            //NOTE: will break if they dont share common ancestor
+            while ((pathAtoRoot.Count != 0 && pathBtoRoot.Count != 0) && ((PhysicalEntity)pathAtoRoot[pathAtoRoot.Count - 1]).Equals(((PhysicalEntity)pathBtoRoot[pathBtoRoot.Count - 1])))
+            {
+                pathAtoRoot.RemoveAt(pathAtoRoot.Count - 1);
+                pathBtoRoot.RemoveAt(pathBtoRoot.Count - 1);
+            }
+            //return B, unles A is 0
+            if (pathAtoRoot.Count == 0)
+                return (PhysicalEntity[])pathBtoRoot.ToArray(typeof(PhysicalEntity));
+            else
+                return (PhysicalEntity[]) pathBtoRoot.ToArray(typeof(PhysicalEntity));
+        }
+
         public PhysicalEntity getRandomEntity()
         {
             try
@@ -66,7 +120,7 @@ namespace ContextualDialogue.WorldManager
             }
         }
 
-        
+
         /*GET_ALL FUNCTIONS*/
         //used as a kind of toString for displaying all world objects
 

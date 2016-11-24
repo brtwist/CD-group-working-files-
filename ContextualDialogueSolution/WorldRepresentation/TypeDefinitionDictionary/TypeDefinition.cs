@@ -1,15 +1,14 @@
-﻿using System;
+﻿using EnumNamespace;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using EnumNamespace;
 
 namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 {
     [Serializable]
     public class TypeDefinition : TreeNode
     {
-      //  protected override TreeNode parentNode;
-      //  protected override String nodeName;
+        //  protected override TreeNode parentNode;
+        //  protected override String nodeName;
         private Double typicallity { get; set; }
 
         /*ACCESS LEVEL*/
@@ -76,7 +75,7 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
         /*
         * TODO good (good might be a special case. needs to be linked to other scalars, depending on type. maybe even linked to absolute descriptors. e.g. is the mango good? good=tasty+ripe
         */
-        
+
 
         /*adjectives: absolute adjectives*/
         /*verbs, pairs of verbs with adjectives and values e.g. "is. red. true" "tastes. bitter. false"*/

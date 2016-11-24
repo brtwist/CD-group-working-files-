@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 {
@@ -12,7 +10,7 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
         public Boolean countable;
 
         //constructors. if no plural is specified, automatically uncountable
-        public Noun() { this.countable = false;  }
+        public Noun() { this.countable = false; }
 
         public Noun(String noun)
         {

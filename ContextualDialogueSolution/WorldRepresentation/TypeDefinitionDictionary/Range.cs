@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EnumNamespace;
 
 namespace ContextualDialogue.WorldManager
 {
@@ -28,6 +25,6 @@ namespace ContextualDialogue.WorldManager
         /*CONSTRUCTOR CHAINING*/
         //no values given, defaults substituted
         public Range() : this(0.5, 1.5) { }
-        
+
     }
 }

@@ -1,7 +1,6 @@
-﻿using System;
+﻿using EnumNamespace;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using EnumNamespace;
 
 namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 {
@@ -30,7 +29,7 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
             string[] subStrings;
             //TypeDefinition newTree = new TypeDefinition("temp");
             //TypeDefinition currentNode = newTree;//initialise current node as root node
-            TypeDefinition newNode = new TypeDefinition("errorLoadingFile"); 
+            TypeDefinition newNode = new TypeDefinition("errorLoadingFile");
             TypeDefinition parentNode;
 
             try //catch syntax errors in the file
@@ -39,7 +38,7 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 
                 // Read the file and process it line by line.
                 while ((line = file.ReadLine()) != null)
-                {   
+                {
                     //first trim whitespace
                     line = line.Trim();
 
@@ -79,16 +78,16 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
                                     //new node inherits all its values from it's parent
                                     newNode = parentNode.shallowCopy();
                                     newNode.typeName = subStrings[2];
-                                    
+
 
                                     //if (subStrings.Length > 4)//check for additional paramaters in the first line, e.g. saliency                                    {
-                                        //TODO SALIENCY/typicality
-                                        //for (int i = 3; i < subStrings.Length; i++)//if there are paramaters process them one at a time
-                                        //{
-                                        //    line = subStrings[i];
-                                        //    if (/*line.Contains("=") &&*/ line[line.LastIndexOf('=') - 1].CompareTo('S') == 0) //if the character before the = is S ...
-                                        //        newNode.saliency = double.Parse( line.Substring(line.LastIndexOf('=') + 1));//returns number directly after the = 
-                                        //}
+                                    //TODO SALIENCY/typicality
+                                    //for (int i = 3; i < subStrings.Length; i++)//if there are paramaters process them one at a time
+                                    //{
+                                    //    line = subStrings[i];
+                                    //    if (/*line.Contains("=") &&*/ line[line.LastIndexOf('=') - 1].CompareTo('S') == 0) //if the character before the = is S ...
+                                    //        newNode.saliency = double.Parse( line.Substring(line.LastIndexOf('=') + 1));//returns number directly after the = 
+                                    //}
                                     //}
                                     /*TODO else if (no saliency/typicality specified)
                                      * {

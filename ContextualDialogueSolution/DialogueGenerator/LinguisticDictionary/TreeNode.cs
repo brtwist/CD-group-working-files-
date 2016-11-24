@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
 {
@@ -11,19 +10,19 @@ namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
         private string nodeName;
         public string name
         {
-            get { return nodeName;  }
-            set { nodeName = value;  }
+            get { return nodeName; }
+            set { nodeName = value; }
         }
 
         private Double salience;
         public Double saliency
         {
-            set { salience = value;  }
+            set { salience = value; }
             get { return salience; }
         }
 
         public int count { get { return this.getCountALL(); } }
-        public bool hasChildren { get { return children.Count > 0;  } }
+        public bool hasChildren { get { return children.Count > 0; } }
 
         private TreeNode parent;
         public TreeNode parentNode
@@ -120,28 +119,28 @@ namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
 
             foreach (DictionaryEntry element in values)
                 totalChoices += element.salience;
-            
+
             //error check
             if (totalChoices == 0)
                 return "< error: empty dictionary >";
 
             //now we have non-zero list of possible nodes to choose from
 
-            randomNumber = r.NextDouble()*totalChoices;
+            randomNumber = r.NextDouble() * totalChoices;
 
             foreach (DictionaryEntry element in values)
             {
                 if (randomNumber <= element.salience)
                     return element.value;//ITEM FOUND
                 else
-                randomNumber -= element.salience;
+                    randomNumber -= element.salience;
             }
 
             //should never get here
             return "<dictionary getRandom() error: no entry chosen>";
         }
 
-//counts all ancestors
+        //counts all ancestors
         private int getCountALL()
         {
             int count = values.Count;
@@ -152,14 +151,14 @@ namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
             return count;
         }
 
-//counts ancestors, ignores branches or values with 0 saliency
+        //counts ancestors, ignores branches or values with 0 saliency
         private Double getCountSALIENT()
         {
             Double count = 0.0;
 
             foreach (DictionaryEntry element in values)
             {
-                    count += element.salience;
+                count += element.salience;
             }
 
             foreach (TreeNode element in children)
@@ -192,10 +191,10 @@ namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
 
             foreach (DictionaryEntry element in values)
                 output += element.value + ", ";
-            
+
             foreach (TreeNode element in children)
                 output += element.ToString();
-                
+
             output += " } ";
 
             return output;

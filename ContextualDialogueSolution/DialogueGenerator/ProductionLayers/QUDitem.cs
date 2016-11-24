@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ContextualDialogue.DialogueGenerator
 {
@@ -8,17 +6,19 @@ namespace ContextualDialogue.DialogueGenerator
     {
         public String initiatingSpeaker;
         public String respondingSpeaker;
-        public int subjectID;
+        public Object subject;//can be an int ID, an entity, or a type
         //verb
 
-        public enum ExchangeTypeEnum { @default }
+        public enum ExchangeTypeEnum { @default, where }
         public ExchangeTypeEnum exchangeType;
         //salience
         //lengthiness of exchange on this topic
 
-            public QUDitem()
-        {
+        public QUDitem() : this(ExchangeTypeEnum.@default) { }
 
+        public QUDitem(ExchangeTypeEnum type)
+        {
+            exchangeType = type;
         }
 
         //in case the speakers need to be swapped

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
 using EnumNamespace;
-using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
+using System;
 
 namespace ContextualDialogue.WorldManager
 {
