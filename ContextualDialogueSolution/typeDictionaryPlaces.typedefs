@@ -1,0 +1,11 @@
+#typedefinition start place #ISA root
+	|noun |singular=place |plural=places
+#typedefinition end region
+
+#typedefinition start shop #ISA place
+	|noun |singular=shop |plural=shops
+#typedefinition end shop
+
+#typedefinition start bar #ISA place
+	|noun |singular=bar |plural=bars
+#typedefinition end bar

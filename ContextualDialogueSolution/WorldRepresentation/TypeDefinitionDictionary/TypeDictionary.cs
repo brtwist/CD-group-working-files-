@@ -16,7 +16,30 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
             dictionary = new Dictionary<string, TypeDefinition>();
             root = new TypeDefinition("root");
             dictionary.Add("root", root);
-            loadTypeDefinitions("..\\..\\..\\typeDictionary.typedefs");
+
+            //go through the files specifying the .typdef resources and load them in
+            try //catch file not found exception
+            {
+                String relativeFilePath = "..\\..\\..\\";
+                System.IO.StreamReader file = new System.IO.StreamReader(relativeFilePath + "typeDictionary.filelist");
+
+                String line;
+                // Read the file and process it line by line.
+                while ((line = file.ReadLine()) != null)
+                {
+                    //first trim whitespace
+                    line = line.Trim();
+
+                    if (line.Length > 0)//not a blank line containing only whitespace
+                    {
+
+                        loadTypeDefinitions(relativeFilePath + line);
+                    }
+                }
+            } catch (FileLoadException e)
+            {
+                //TODO
+            }
         }
 
         /*FILE LOADER
