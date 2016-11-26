@@ -302,7 +302,7 @@
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(75, 23);
             this.loadButton.TabIndex = 1;
-            this.loadButton.Text = "Load";
+            this.loadButton.Text = "Load World";
             this.loadButton.UseVisualStyleBackColor = true;
             this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
             // 
@@ -322,7 +322,7 @@
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 5;
-            this.saveButton.Text = "Save";
+            this.saveButton.Text = "Save World";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
@@ -331,7 +331,7 @@
             this.worldListBox.FormattingEnabled = true;
             this.worldListBox.Location = new System.Drawing.Point(6, 18);
             this.worldListBox.Name = "worldListBox";
-            this.worldListBox.Size = new System.Drawing.Size(507, 69);
+            this.worldListBox.Size = new System.Drawing.Size(507, 238);
             this.worldListBox.TabIndex = 6;
             // 
             // closeButton
@@ -340,7 +340,7 @@
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 7;
-            this.closeButton.Text = "Close";
+            this.closeButton.Text = "Close World";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 

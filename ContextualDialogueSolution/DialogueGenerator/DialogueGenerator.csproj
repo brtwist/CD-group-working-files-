@@ -35,6 +35,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProductionLayers\AdjacencyPair.cs" />
     <Compile Include="ProductionLayers\Conversation.cs" />
     <Compile Include="ProductionLayers\Conversation.QUDGenerator.cs" />
     <Compile Include="ProductionLayers\ConversationalParamaters.cs" />

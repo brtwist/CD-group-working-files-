@@ -63,84 +63,38 @@ namespace ContextualDialogue.DialogueGenerator
          * Paramaters expects either a type or a specfici object. function assumes object has a spatial parent.
          * if type, should ask about an indefinite. if specific; should ask about definite
          * Asking about facts of a given object
-         * 1)AUX + Pr + prep + NP? "is NP/PR in the house?"
-         * 2)Where + Aux + proper noun?   "where is osnabruck?" (constraints: unique, i.e. one of a kind)
+         * 
+         * SPECIFIC ENTITY
+         * 1)Where + Aux + proper noun?   "where is osnabruck?" (constraints: unique, i.e. one of a kind)
+         * 2)where + <modal: might/would/could/can> + I find noun?
+         * x)TODO AUX + Pr + prep + NP? "is NP/PR in the house?"
+         * 
+         * TYPE
+         * 4)Where + can i find a/some?   "where is osnabruck?" (constraints: unique, i.e. one of a kind)
+         * 5)where + <modal: might/would/could/can> + I find noun?
+         * x)TODO AUX + Pr + prep + NP? "is there a/some NP/PR in the house?"
+         * 
+         * first check whether its a physical entity or a type
          */
-        public String senseAskAboutWhere(String utterer, PhysicalEntity e1, Tense t)
+        public String senseAskAboutWhere(String utterer, object targetObject, Tense t)
         {
-            return senseAskAboutWhere(utterer, e1, e1.getSpatialparent().adult, t);
-        }
-
-        public String senseAskAboutWhere(String utterer, PhysicalEntity e1, PhysicalEntity e2, Tense t)
-        {
-            String aux, det1, np1, det2, np2, prep, /*definiteDeterminer,*/ verb = "";
-            int productionRule;
-            String output;
+            Type type = targetObject.GetType();
+            String subject, output = "";
 
             /*CHOOSE PRODUCTION RULE*/
-            if (e1.oneOfAKind)
-                productionRule = 2;
-            else //tense != future
+            int productionRule;
+            if (type == typeof(PhysicalEntity))
                 productionRule = r.Next(1, 2);
+            else if (type == typeof(TypeDefinition))
+                productionRule = r.Next(4, 5);
+            else //error
+                return "error in senseAskAboutWhere: " + targetObject.ToString() + " neither a Physical Entity nor a Type Definition.";
 
-            prep = e1.getSpatialparent().preposition.ToString();
+            subject = renderConstituent(targetObject, false);
 
-            np1 = e1.typeDefinition.getRandomCommonNoun().noun;
-            np2 = e2.typeDefinition.getRandomCommonNoun().noun;
+            if (productionRule == 1)
 
-            //choose det
-            det1 = "the";
-            if (e1.oneOfAKind)
-                det1 = "";
-
-            det2 = "the";
-            if (e2.oneOfAKind)
-                det2 = "";
-
-
-            /*CHOOSE AUX*/
-            if (t == Tense.pastSimple)
-            {
-                aux = "was";
-                //assumes singular: were
-            }
-            else if (t == Tense.future)
-            {
-                if (r.NextDouble() > 0.5)//50% chance either way between going and will
-                {
-                    aux = "will";
-                    verb = "be";
-                }
-                else
-                {
-                    aux = "is";
-                    verb = "going to be";
-                }
-
-            }
-            else /*t == Tense.present*/
-            {
-                aux = "is";
-                //assumes singular: are
-            }
-
-            /*ASSEMBLE*/
-            if (t == Tense.future)
-            {
-                if (productionRule == 1)
-                    output = aux + " " + det1 + " " + np1 + " " + verb + " " + prep + " " + det2 + " " + np2 + "?";
-                else /*Production rule 2*/
-                    output = "Where" + " " + aux + " " + det1 + " " + np1 + " " + verb + "?";
-            }
-            else
-            {
-                if (productionRule == 1)
-                    output = aux + " " + det1 + " " + np1 + " " + prep + " " + det2 + " " + np2 + "?";
-                else /*Production rule 2*/
-                    output = "Where" + " " + aux + " " + det1 + " " + np1 + "?";
-            }
-
-
+            output = "where is " + subject + "?";
             //remove duplicate whitespace
             output = System.Text.RegularExpressions.Regex.Replace(output, @" {2,}", " ");
 
@@ -158,7 +112,7 @@ namespace ContextualDialogue.DialogueGenerator
             String subject, preposition, spatialParent;
             String output = "";
 
-            subject = renderConstituent(entitySubject);
+            subject = renderConstituent(entitySubject, false);
 
             
             
@@ -170,9 +124,9 @@ namespace ContextualDialogue.DialogueGenerator
                 return "this is " + subject;
 
             int count = path.Length -2;
-            while (count > 0)
+           while (count > 0)
             {
-                output += " " + path[count].getSpatialparent().preposition.ToString() + " " + renderConstituent(path[count]);
+                output += " " + path[count].getSpatialparent().preposition.ToString() + " " + renderConstituent(path[count], false);
                 count--;
             }
 
@@ -206,7 +160,7 @@ namespace ContextualDialogue.DialogueGenerator
             /*CHOOSE ADJECTIVE*/
             adj = d.trait.ToString();
 
-            constituent = renderConstituent(o);
+            constituent = renderConstituent(o, false);
 
             /*RULE 1 or 2*/
             if (productionRule == 1 || productionRule == 2)
@@ -294,40 +248,77 @@ namespace ContextualDialogue.DialogueGenerator
             return output;
         }
 
-        //render noun constituent
-        public String renderConstituent(PhysicalEntity o)
+        /*render noun constituent
+         * this function does two things
+         * first checks what for the noun should be, e.g. plural uncountable
+         * second checks what type of determiner should have, e.g. a/an/some/any
+         */
+        public String renderConstituent(object o, bool plural)
         {
             String output;
 
-            //first check whether itshould be a pronoun
-            //todo
+            //check whether its a type or an entity
+            Type type = o.GetType();
 
-            /*CHOOSE PRONOUN*/
-            output = "it";
-            //TODO add in other pronouns (yours, this, that, they etc.)
+            if (type == typeof(PhysicalEntity))
+            {
+                PhysicalEntity e = (PhysicalEntity)o;
 
-            /*CHOOSE NOUN*/
-            Noun nounObject = o.getRandomCommonNoun();
+                //first check whether itshould be a pronoun
+                //todo, and if so what the pronoun should be
+                //output = "it";//your, my, their, she, he, him
+                //TODO add in other pronouns (yours, this, that, they etc.)
 
-            // check if its unique and whether it has a proper name
-            if (o.hasProperNoun)
-                output = o.properNoun;
+
+                /*CHOOSE NOUN*/
+                
+
+                if (e.hasProperNoun)//if it has a proper name, use it
+                    output = e.properNoun;
+                else
+                {
+                    Noun nounObject = e.getRandomCommonNoun();
+                    output = "the" + nounObject.noun;
+
+                    if (plural && nounObject.countable)
+                        output = "the " + nounObject.plural;
+                }
+            }
+            else if (type == typeof(TypeDefinition))
+            {
+                TypeDefinition t = (TypeDefinition)o;
+
+                //first check whether itshould be a pronoun
+                //todo, and if so what the pronoun should be
+                //output = "it";//your, my, their, she, he, him
+                //TODO add in other pronouns (yours, this, that, they etc.)
+
+
+                /*CHOOSE NOUN*/
+
+                //if (e.hasProperNoun)//if it has a proper name, use it
+                //    output = e.properNoun; a type should probably never have a proper noun unless its something like a chain store, e.g. REWE
+                
+                    Noun nounObject = t.getRandomCommonNoun();
+                if (!plural)
+                {
+                    //a horse
+                    if (nounObject.countable)
+                    output = LinguisticDictionary.LinguisticDictionary.getAorAN(nounObject.noun) + nounObject.noun;
+                    else //not countable
+                        output = "some " + nounObject.noun;
+                }
+                else //(plural)
+                {
+                    //some horse
+                    if (!nounObject.countable)
+                        output = "some " + nounObject.noun;
+                    else //nounObject is countable
+                        output = "some " + nounObject.plural;
+                }
+            }
             else
-                output = "the" + nounObject.noun;
-
-            /*CHOOSE DETERMINERS*/
-            //choose indefinite determiner: between a and an
-            //if (nounObject.countable == true)
-            //{
-            //    indefiniteDeterminer = LinguisticDictionary.LinguisticDictionary.getAorAN(d.trait);
-            //}
-            //else //noun is uncountable
-            //    indefiniteDeterminer = "";
-
-            //choose definite determiner
-            //definiteDeterminer = "the";
-            //assumes singular
-
+                output = "error parsing constituent in UtteranceGenerator.cs : " + o.ToString() + " is neither a Physical Entity nor a Type Definition";
             return output;
 
         }

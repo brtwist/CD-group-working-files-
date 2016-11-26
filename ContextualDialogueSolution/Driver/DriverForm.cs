@@ -73,7 +73,8 @@ namespace DriverNamespace
         /*this is the entry point for the dialogue manager*/
         private void CreateConvoButton_Click(object sender, EventArgs e)
         {
-            ConversationalParamaters cParams = new ConversationalParamaters(ConversationalParamaters.conversationType.helloOnly, "Agent 1", "Agent 2");
+            ConversationalParamaters cParams = 
+                new ConversationalParamaters(ConversationalParamaters.conversationType.helloOnly, "Agent 1", "Agent 2");
             cParams.greetingMode = ConversationalParamaters.GreetingMode.fourTurn;
             cParams.farewellMode = ConversationalParamaters.FarewellMode.simple;//by default conversation type helloOnly doesnt have a farewell
             cParams.conversationLocation = worldManager.world.findByProperNoun("Germany");

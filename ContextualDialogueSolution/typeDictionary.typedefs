@@ -64,6 +64,18 @@
 	%|gradeable=size |value=0.9
 #typedefinition end state
 
+#typedefinition start place #ISA root
+	|noun |singular=place |plural=places
+#typedefinition end region
+
+#typedefinition start shop #ISA place
+	|noun |singular=shop |plural=shops
+#typedefinition end shop
+
+#typedefinition start bar #ISA place
+	|noun |singular=bar |plural=bars
+#typedefinition end bar
+
 %%%%%%%%%%%%%%%%%%food and drink
 #typedefinition start food #ISA PhysicalEntity
 	%|gradeable tastes |value=1.0 |range=0.9-1.3
@@ -91,6 +103,12 @@
 #typedefinition start chocolate #ISA food
 	%|gradeable tastes |value=1.4
 #typedefinition end chocolate
+
+#typedefinition start drink #ISA PhysicalEntity
+#typedefinition end drink
+
+#typedefinition start beer #ISA drink
+#typedefinition end beer
 
 #typedefinition start hotdrink #ISA PhysicalEntity
 	|noun |singular=hot drink |plural=hot drinks

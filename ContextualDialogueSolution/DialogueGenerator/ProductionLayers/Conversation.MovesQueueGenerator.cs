@@ -69,10 +69,22 @@ namespace ContextualDialogue.DialogueGenerator
             q.paramaters = new object[3] { quditem.initiatingSpeaker, quditem.subject, Tense.present };
             MovesQueue.Enqueue(q);
 
+            //if responding participant knows the answer
             q = new MovesQueueItem();
             q.methodToCall = "senseTellAboutWhere";
             q.paramaters = new object[3] { quditem.respondingSpeaker, quditem.subject, conversationalParamaters.conversationLocation };
             MovesQueue.Enqueue(q);
+
+            //plus reaction
+            //q = new MovesQueueItem();
+            //q.methodToCall = ""
+
+            //TODO if responding participant doesnt know the answer
+
+            //TODO plus no problem for not knowing
+
+            //now reactions
+
         }
 
         public void parseFarewellPhase(QUDitem quditem)
