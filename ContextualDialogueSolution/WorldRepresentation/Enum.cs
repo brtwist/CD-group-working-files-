@@ -2,9 +2,10 @@
 {
     //adjectives/properties that knowables can have e.g. tasty. gray.
     public enum Adjective { none, good, bad, nice, tasty, healthy, ripe, strong, hot }
-    public enum Verb { none, taste, smell, look, help }
+    //public enum Verb { none, taste, smell, look, help }
     //only includes spatial prepositions
     public enum Preposition { none, at, on, @in, under, over, inside, beside, above, below }
+
     public enum Tense { none, pastSimple, present, presentContinuous, future }
     //public enum temporalRelationships {before, after }
 

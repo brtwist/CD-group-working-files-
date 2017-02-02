@@ -2,6 +2,7 @@
 
 namespace ContextualDialogue.DialogueGenerator.LinguisticDictionary
 {
+
     partial class LinguisticDictionary
     {
         public static String getAorAN(String input)

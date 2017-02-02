@@ -1,4 +1,5 @@
 ﻿using System;
+using ContextualDialogue.WorldManager.TypeDefinitionDictionary.DataTypes;
 
 namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 {
@@ -17,6 +18,8 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
         {
             get { return properNoun != null; }
         }
+
+        public virtual String reflexivePronoun { get { return "iteself"; } }//should be overloaded in a deriving class which implements gender, i.e. Agents
 
         public Noun getRandomCommonNoun() { return typeDefinition.getRandomCommonNoun(); }
 

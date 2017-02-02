@@ -1,8 +1,7 @@
-﻿using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
-using EnumNamespace;
+﻿using EnumNamespace;
 using System;
 
-namespace ContextualDialogue.WorldManager
+namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary.DataTypes
 {
     //contains a relationship to another object within the knowable world
     //that relationship consists of two objects plus a prepositional relationship between them.

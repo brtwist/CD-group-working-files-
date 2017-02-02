@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
+namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary.DataTypes
 {
     [Serializable]
     public class Noun

@@ -1,11 +1,9 @@
-﻿using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
-
-/*
+﻿/*
  * this class represents the relationship of ownership.
  * the owner owns the owned.
  */
 
-namespace ContextualDialogue.WorldManager
+namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary.DataTypes
 {
     class Ownership
     {

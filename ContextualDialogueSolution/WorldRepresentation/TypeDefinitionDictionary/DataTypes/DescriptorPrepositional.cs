@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ContextualDialogue.WorldManager
+namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary.DataTypes
 {
     /*e.g. "Tadpoles have tails" "Tadpoles have tails on their bodies"*/
 

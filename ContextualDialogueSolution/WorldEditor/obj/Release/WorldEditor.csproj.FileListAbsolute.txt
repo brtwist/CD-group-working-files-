@@ -1,0 +1,10 @@
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldEditor\bin\Release\WorldEditor.exe
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldEditor\bin\Release\WorldEditor.pdb
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldEditor\bin\Release\WorldManager.dll
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldEditor\bin\Release\WorldManager.pdb
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Release\WorldEditor.csprojResolveAssemblyReference.cache
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Release\WorldEditorNamespace.EditorForm.resources
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Release\WorldEditor.Properties.Resources.resources
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Release\WorldEditor.csproj.GenerateResource.Cache
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Release\WorldEditor.exe
+C:\Users\benjamint\Documents\Visual Studio 2015\Projects\ContextualDialogueSolution\WorldEditor\obj\Release\WorldEditor.pdb

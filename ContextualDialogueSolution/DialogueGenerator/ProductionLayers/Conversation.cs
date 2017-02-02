@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using ContextualDialogue.DialogueGenerator.ProductionLayers.AdjacencyPairs;
 
 namespace ContextualDialogue.DialogueGenerator
 {
@@ -23,7 +24,9 @@ namespace ContextualDialogue.DialogueGenerator
             conversationalParamaters = paramaters;
 
             r = new Random();
-            QUD = new Queue<QUDitem>();
+            topicQueue = new Queue<Topic>();
+            adjacencyPairRoot = new ProductionLayers.AdjacencyPairs.AdjacencyPair();
+            adjacencyPairQueue = new Queue<ProductionLayers.AdjacencyPairs.AdjacencyPair>();
             MovesQueue = new Queue<MovesQueueItem>();
             outputQueue = new Queue<Turn>();
 
@@ -47,22 +50,28 @@ namespace ContextualDialogue.DialogueGenerator
          * */
         public void go()
         {
-            //if there are user specified conversation topics on the paramters object, parse one into a move
-            if (QUD.Count == 0 && conversationalParamaters.hasQUDitem())
+            //if there are user specified conversation topics on the paramters object, parse one into adjacency pairs
+            if (topicQueue.Count == 0 && conversationalParamaters.hasTopics())
                 generateMoves();
 
             //if run out of conversation topics, make new ones (if autogenerate is turned on)
-            if (conversationalParamaters.autoGenerateQUDitems && QUD.Count == 0)
+            if (conversationalParamaters.autoGeneratePairParamaterss && topicQueue.Count == 0)
                 autoMagicallySeedQUD();
 
-            //here is the main loop, processing all the queued up methods ( moves queue )
-            while (MovesQueue.Count > 0 /*TODO && !paused*/)
+            //this is the main loop, step iteratively processes off the adjacencypairqueue and the movesqueue
+            while (adjacencyPairQueue.Count > 0 || MovesQueue.Count > 0 /*TODO && !paused*/)
                 step();
         }
 
         //process next MovesQueue item
         private void step()
         {
+            if (adjacencyPairQueue.Count > 0)
+            {
+                AdjacencyPair p = adjacencyPairQueue.Dequeue();
+
+                p.enqueueRecursively(MovesQueue);
+            }
 
             if (MovesQueue.Count > 0)
             {
@@ -90,16 +99,17 @@ namespace ContextualDialogue.DialogueGenerator
                 {
                     /*The following if statement determines whether the method produces output or not
                      * methods producing output need to enqueue string return values onto the output buffer
-                     * this is determined by the fact that only middlelayer functions take a quditem as paramater
+                     * this is determined by the fact that only middlelayer functions take a PairParamaters as paramater
                      */
-                    if (paramaterTypes[0] == typeof(QUDitem))
-                        methodInfo.Invoke(this/*utteranceGenerator*/, p.paramaters);
-                    else
-                        outputQueue.Enqueue(new Turn(p.paramaters[0], (string)methodInfo.Invoke(this/*utteranceGenerator*/, p.paramaters)));
+                     //this if statement used to be a hack to determine if it was a terminal symbol (which had output) or  a rule (which would just be processed)
+                    //if (paramaterTypes[0] == typeof(PairParamaters))
+                    //    methodInfo.Invoke(this/*utteranceGenerator*/, p.paramaters);
+                    //else
+                        outputQueue.Enqueue(new Turn(((PairParamaters)p.paramaters[0]).initiatingSpeaker, (string)methodInfo.Invoke(this/*utteranceGenerator*/, p.paramaters)));
                 }
                 catch (Exception e)
                 {
-                    outputQueue.Enqueue(new Turn("System", "Exception thrown in reflection invoke of " + p.methodToCall));
+                    outputQueue.Enqueue(new Turn("Exception thrown in reflection invoke of " + p.methodToCall));
                     if (e.InnerException != null)
                     {
                         string err = e.InnerException.Message;//get the inner exception
@@ -115,7 +125,7 @@ namespace ContextualDialogue.DialogueGenerator
             //TODO maybe specify reason such as 'im hungry. need to go soon' to be inserted now, and the actual farewell phase inserted on end of QUD
 
             //stop making new conversation
-            conversationalParamaters.autoGenerateQUDitems = false;
+            conversationalParamaters.autoGeneratePairParamaterss = false;
 
             closeQUD();//farewell sequence and any remaining topics now processed
             go();//process all remaining items on all layers.
@@ -138,7 +148,7 @@ namespace ContextualDialogue.DialogueGenerator
             if (hasNextOutput())
                 return outputQueue.Dequeue();
             else
-                return new Turn("error: ", "output queue empty");//this code should be unreachable
+                return new Turn("output queue empty");//this code should be unreachable
 
         }
 
@@ -147,7 +157,7 @@ namespace ContextualDialogue.DialogueGenerator
             if (hasNextOutput())
                 return outputQueue.Peek();
             else
-                return new Turn("error: ", "output queue empty");
+                return new Turn("output queue empty");
 
         }
 

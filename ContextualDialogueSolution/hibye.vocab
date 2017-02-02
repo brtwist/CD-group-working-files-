@@ -2,14 +2,11 @@
 %contains greetings and farewells
 
 	#class start greeting
-		#class start normal
+		#class start casual
 			>hi
-		#class end normal
-		
-		#class start vernacular
 			>hey
 			%might need to define some spectrum of how friendly they are, then this can go into the friendly sections
-		#class end vernacular
+		#class end casual
 	
 		#class start formal
 			>hello
@@ -21,84 +18,105 @@
 			>what do you want?
 		#class end unfriendly
 	
-		#class start friendly |S=0.5
+		#class start intimate |S=0.5
 			>heyy
-			>yo	|S=0.1
+			>yo	|S=0.1  
 			>hey there |S=0.3
 			>hello
 			>long time no see |S=0.0
 			>s'up |S=0.1
-		#class end friendly
+		#class end intimate
 	#class end greeting
 	
 	#class start greetingQuestion
-		#class start friendly
-			>how's it going
+		#class start casual
 			>how are you
 			>how are you doing
 			>how is everything going
-		#class end friendly
+			>how are things
+		#class end casual
 		
 		#class start formal
 			>how are you
 		#class end formal
 	#class end greetingQuestion
 	
+	#class start intimate
+		>how's it going
+		>how are you
+		>whats up
+	#class end intimate
+	
 	#class start greetingQuestionReciprocating
-		#class start friendly
+		#class start casual
 			>what about you
 			>how about you
 			>and how are you
 			>and how are you doing
-			>and you
-			>you
-		#class end friendly
+		#class end casual
 		
 		#class start formal
 			>and how are you
 			>how are you
 		#class end formal
+		
+		#class start intimate
+			>you
+			>and you
+			>what about you
+			>yourself
+			>how about you
+			>how about yourself
+		#class end intimate
 	#class end greetingQuestionReciprocating
 	
 	#class start greetingAnswer
-		#class start friendly
+		#class start casual
 		>not bad
 		>not too bad
 		>pretty good
-		#class end friendly
+		#class end casual
 		
 		#class start formal
 		>very well
 		>very good
 		#class end formal
+		
+		#class start intimate
+			>just the usual
+			>you know just the usual
+			>pretty okay
+			>not bad
+			>good
+		#class end intimate
 	#class end greetingAnswer
 	
 	#class start farewell
-		#class start normal
+		#class start casual
 			>bye
-		#class end normal
+		#class end casual
 		
-		#class start polite
+		#class start formal
 			>have a nice day
 			>goodbye
-		#class end polite
+		#class end formal
 		
 		#class start unfriendly |S=0.0
 			>hmph
 			>bah
 		#class end unfriendly
 		
-		#class start friendly							
+		#class start intimate							
 			>byyee
 			>see you later
 			>take care
 			>have a good one
-		#class end friendly
+		#class end intimate
 	#class end farewell
 	
 	#class start nicetomeetyou
 		
-		#class start friendly
+		#class start casual
 			>it's nice to meet you
 			>nice to meet you
 			>glad to meet you
@@ -111,7 +129,7 @@
 				%>it's been a pleasure meeting you
 			#class end pasttense
 			
-		#class end friendly
+		#class end casual
 		
 		#class start formal
 			>i'm pleased to meet you

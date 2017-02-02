@@ -1,26 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using ContextualDialogue.WorldManager.TypeDefinitionDictionary;
+using ContextualDialogue.WorldManager;
 
 namespace ContextualDialogue.DialogueGenerator
 {
     public class ConversationalParamaters
     {
-        private Random r;
+        public Random r;
         //ArrayList participantsArray;
-        public String participantOne;
-        public String participantTwo;
+        public PhysicalEntity_Agent participantOne;
+        public PhysicalEntity_Agent participantTwo;
+        public World world;
 
         public PhysicalEntity conversationLocation;
 
-        //tone/type e.g. heloOnly, friendly, business, restaraunt
-        public enum conversationType { helloOnly, businessShortExchange } //SocialCatchUp, SocialGettingToKnowYou
+        //this one is used to define the type of convo
+        public enum ConversationType { helloOnly, businessShortExchange } //SocialCatchUp, SocialGettingToKnowYou
+
+        //used to define what register to talk in
+        public enum RegisterType { casual_register, formal_register, intimate_register }
+        public RegisterType registerType;
+
+        //this one is used to define the style that the convo type is rendered? e.g. long-winded, to-the-point
+        //this one is only used in choosing branches in adjacency pairs
+        public enum DiscourseType { none, @default, direct, indirect /*passive, active, business, friendly, colloqual*/}
+        public DiscourseType discourseType;
+
 
         //QUD item that will be discussed (inserted into body by default) 
-        private Queue<QUDitem> userSpecifiedQUDitemList;
+        private Queue<Topic> userSpecifiedTopicsList;
 
         //mode: open-ended (keeps going till told to close) close-ended (parses whatever is initially pushed without extending) goal-orientated (keeps going till goal is reached)
-        public Boolean autoGenerateQUDitems;
+        public Boolean autoGeneratePairParamaterss;
 
         public enum GreetingMode { none, twoTurn, fourTurn }
         public GreetingMode greetingMode;//none, 2stroke, 4stroke
@@ -34,28 +46,34 @@ namespace ContextualDialogue.DialogueGenerator
 
 
         //constructor chooses default settings
-        public ConversationalParamaters(conversationType cType, String pOne, String pTwo)
+        public ConversationalParamaters(ConversationType cType, PhysicalEntity_Agent participantOne, PhysicalEntity_Agent participantTwo, World world)
         {
             r = new Random();
-            userSpecifiedQUDitemList = new Queue<QUDitem>();
+            userSpecifiedTopicsList = new Queue<Topic>();
             //participantsArray = new ArrayList(2);//default only two participants
-            participantOne = pOne;
-            participantTwo = pTwo;
+            this.participantOne = participantOne;
+            this.participantTwo = participantTwo;
+            this.world = world;
 
             greetingMode = GreetingMode.twoTurn;
             //smallTalkMode = 0;
             farewellMode = FarewellMode.simple;
-            autoGenerateQUDitems = false;//off by default
+            autoGeneratePairParamaterss = false;//off by default
 
+            //TODO use this somehow
+            discourseType = DiscourseType.@default;
+
+            //TODO choose register in a more inteligent way
+            registerType = RegisterType.casual_register;
 
             //contains one case for every type of conversation
             switch (cType)
             {
-                case conversationType.helloOnly:
+                case ConversationType.helloOnly:
                     setDefaultsForHelloOnly();
                     break;
 
-                case conversationType.businessShortExchange:
+                case ConversationType.businessShortExchange:
                     setDefaultsForBusinessShortExchange();
                     break;
 
@@ -69,7 +87,7 @@ namespace ContextualDialogue.DialogueGenerator
         private void setDefaultsForHelloOnly()
         {
             //intended to simulate passing greeting where neither speaker really stops walking
-            autoGenerateQUDitems = false;
+            autoGeneratePairParamaterss = false;
             //since no conversation was really had, no goodbye is necessary
             farewellMode = FarewellMode.none;
 
@@ -82,7 +100,7 @@ namespace ContextualDialogue.DialogueGenerator
         {
             //intended to simulate ver short exchanges such as asking a question at the reception 
             //desk of a hotel. no 'how are you's' just short and to the point
-            autoGenerateQUDitems = false;
+            autoGeneratePairParamaterss = false;
 
             greetingMode = GreetingMode.twoTurn;
             farewellMode = FarewellMode.simple;
@@ -93,28 +111,31 @@ namespace ContextualDialogue.DialogueGenerator
         //sets default/random values for anything the user doesnt specify
         private void autoFillUnspecifiedParamaters()
         {
-
+            //if no location was specified, simply guess that the conversation is probably taking place where the participants are
+            //assumption only holds true if the user has been keeping the knowledge database up to date
+            if (conversationLocation == null)
+                conversationLocation = participantOne.getSpatialparent().adult;
         }
 
-        public void addQUDitem(QUDitem q) { userSpecifiedQUDitemList.Enqueue(q); }
+        public void addTopic(Topic t) { userSpecifiedTopicsList.Enqueue(t); }
 
-        public QUDitem getNextQUDitem()
+        public Topic  getNextTopic()
         {
-            //if (userSpecifiedQUDitemList.Count > 0)
+            //if (userSpecifiedPairParamatersList.Count > 0)
             //{
-            return userSpecifiedQUDitemList.Dequeue();
+            return userSpecifiedTopicsList.Dequeue();
             //}
             //TODO breaks if queue is empty
         }
 
-        public QUDitem peekNextQUDitem()
+        public Topic peekNextTopic()
         {
-            return userSpecifiedQUDitemList.Peek();
+            return userSpecifiedTopicsList.Peek();
         }
 
-        public bool hasQUDitem()
+        public bool hasTopics()
         {
-            return userSpecifiedQUDitemList.Count > 0;
+            return userSpecifiedTopicsList.Count > 0;
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using EnumNamespace;
 using System;
 using System.Collections.Generic;
+using ContextualDialogue.WorldManager.TypeDefinitionDictionary.DataTypes;
 
 namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 {
@@ -56,7 +57,31 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 
         /*END NOUNS*/
 
+        /*CLASS OPINION PARAMATERS*/
+        /*
+        public struct OpinionParamaters
+        {
+            public Double liklihoodOfLiking;
+            public List<String> reasonsForLiking;
 
+            public Double liklihoodOfDisliking;
+            public List<String> reasonsForDisliking;
+        }
+        private OpinionParamaters opinionParamaters;
+
+        //checks if there are opinion paramaters (because structs are never null)
+        public Boolean _hasOpinionParamaters
+        {
+            get { return opinionParamaters.liklihoodOfLiking == 0.0 && opinionParamaters.liklihoodOfDisliking == 0.0;  }
+        }
+
+        //if there are paramaters, return them. else null
+        public OpinionParamaters _opinionParamaters
+        {
+            get { return opinionParamaters; }
+            set { opinionParamaters = value;  }
+        }
+        */
 
         /*CLASS ADJECTIVES*/
         /*adjectives: scalar adjectives , values relative to this object's type*/

@@ -124,6 +124,20 @@ namespace WorldEditorNamespace
             pe11.oneOfAKind = true;
 
             int thingy = worldManager.world.add(pe12);//int is the ID of the object
+
+            PhysicalEntity_Agent pe13 = new PhysicalEntity_Agent(worldManager.typeDictionary.tryGetValue("human"), "John", "Snow", PhysicalEntity_Agent.Gender.male);
+            //pe11.properNoun = "Sauber von Oz";
+            pe11.setSpatialParent(Preposition.on, pe4);
+            pe11.oneOfAKind = true;
+
+            int agent1 = worldManager.world.add(pe13);//int is the ID of the object
+
+            PhysicalEntity_Agent pe14 = new PhysicalEntity_Agent(worldManager.typeDictionary.tryGetValue("human"), "Mary", "Jane", PhysicalEntity_Agent.Gender.female);
+            //pe11.properNoun = "Sauber von Oz";
+            pe11.setSpatialParent(Preposition.on, pe4);
+            pe11.oneOfAKind = true;
+
+            int agent2 = worldManager.world.add(pe14);//int is the ID of the object
             /*END adding objects*/
 
             worldManager.saveWorldFile();

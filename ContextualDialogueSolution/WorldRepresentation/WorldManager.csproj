@@ -35,18 +35,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DescriptorGradable.cs" />
+    <Compile Include="TypeDefinitionDictionary\DataTypes\DescriptorGradable.cs" />
     <Compile Include="FileLoadException.cs" />
-    <Compile Include="TypeDefinitionDictionary\Range.cs" />
-    <Compile Include="DescriptorPrepositional.cs" />
-    <Compile Include="Descriptor.cs" />
+    <Compile Include="TypeDefinitionDictionary\DataTypes\Opinion.cs" />
+    <Compile Include="TypeDefinitionDictionary\PhysicalEntity_Agent.cs" />
+    <Compile Include="TypeDefinitionDictionary\DataTypes\Range.cs" />
+    <Compile Include="TypeDefinitionDictionary\DataTypes\DescriptorPrepositional.cs" />
+    <Compile Include="TypeDefinitionDictionary\DataTypes\Descriptor.cs" />
     <Compile Include="Enum.cs" />
-    <Compile Include="TypeDefinitionDictionary\Noun.cs" />
+    <Compile Include="TypeDefinitionDictionary\DataTypes\Noun.cs" />
     <Compile Include="TypeDefinitionDictionary\PhysicalEntity.cs" />
     <Compile Include="TypeDefinitionDictionary\TypeDictionary.cs" />
     <Compile Include="TypeDefinitionDictionary\TreeNode.cs" />
-    <Compile Include="Ownership.cs" />
-    <Compile Include="SpatialLocation.cs" />
+    <Compile Include="TypeDefinitionDictionary\DataTypes\Ownership.cs" />
+    <Compile Include="TypeDefinitionDictionary\DataTypes\SpatialLocation.cs" />
     <Compile Include="World.cs" />
     <Compile Include="WorldEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -226,6 +226,7 @@
             this.outputGroupBox.TabIndex = 5;
             this.outputGroupBox.TabStop = false;
             this.outputGroupBox.Text = "conversationGroupBox";
+            this.outputGroupBox.Enter += new System.EventHandler(this.outputGroupBox_Enter);
             // 
             // EndConvoButton
             // 

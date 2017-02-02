@@ -15,8 +15,17 @@
 #typedefinition end transport
 
 %%%%%%%%%%%%%%%%%%%animals
+#typedefinition start livingthing #ISA movingthing
+	|noun |singular=living thing |plural=living things
+#typedefinition end livingthing 
 
-#typedefinition start animal #ISA movingthing
+#typedefinition start human #ISA livingthing
+	|noun |singular=person thing |plural=people
+	|ability |trait=tools |verb=use
+	|attribute |trait=smart
+#typedefinition end human
+
+#typedefinition start animal #ISA livingthing
 	|noun |singular=animal |plural=animals
 #typedefinition end animal
 
@@ -46,8 +55,6 @@
 	|attribute |trait=milk |attribute=drink
 %	|cancel |descriptor |trait=milk 
 #typedefinition end calf
-
-%%%%%%%%%%%%%%%%%%places
 
 #typedefinition start area #ISA root
 	|noun |singular=region |plural=regions

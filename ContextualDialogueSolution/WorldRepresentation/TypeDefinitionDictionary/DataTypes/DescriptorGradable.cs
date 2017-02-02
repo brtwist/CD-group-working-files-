@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ContextualDialogue.WorldManager
+namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary.DataTypes
 {
     class DescriptorGradable
     {

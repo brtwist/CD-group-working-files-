@@ -47,17 +47,19 @@ namespace DriverNamespace
         {
 
             int start = outputRichTextBox.TextLength;
-            outputRichTextBox.AppendText(output.participant.ToString() + "| " + output.utterance + "\n");
+            outputRichTextBox.AppendText(output._speaker + " | " + output.utterance + "\n");
 
             int end = outputRichTextBox.TextLength;
 
             // Textbox may transform chars, so (end-start) != text.Length
             outputRichTextBox.Select(start, end);
             {
-                if (output.participant.ToString().CompareTo("Agent 1") == 0)
+                if (output._speaker.CompareTo("John Snow") == 0)
                     outputRichTextBox.SelectionColor = Color.Blue;
-                if (output.participant.ToString().CompareTo("Agent 2") == 0)
+                if (output._speaker.CompareTo("Mary Jane") == 0)
                     outputRichTextBox.SelectionColor = Color.Green;
+                if (output._speaker.CompareTo("Error ") == 0)
+                    outputRichTextBox.SelectionColor = Color.Red;
 
             }
             outputRichTextBox.SelectionLength = 0; // clear
@@ -73,16 +75,15 @@ namespace DriverNamespace
         /*this is the entry point for the dialogue manager*/
         private void CreateConvoButton_Click(object sender, EventArgs e)
         {
-            ConversationalParamaters cParams = 
-                new ConversationalParamaters(ConversationalParamaters.conversationType.helloOnly, "Agent 1", "Agent 2");
+            ConversationalParamaters cParams =
+                new ConversationalParamaters(ConversationalParamaters.ConversationType.helloOnly, worldManager.world.findAgentByName("John Snow"), worldManager.world.findAgentByName("Mary Jane"), worldManager.world );
             cParams.greetingMode = ConversationalParamaters.GreetingMode.fourTurn;
             cParams.farewellMode = ConversationalParamaters.FarewellMode.simple;//by default conversation type helloOnly doesnt have a farewell
-            cParams.conversationLocation = worldManager.world.findByProperNoun("Germany");
 
-            QUDitem q = new QUDitem(QUDitem.ExchangeTypeEnum.where);
-            q.subject = worldManager.world.findByProperNoun("Westerberg Campus");
+            Topic t = new Topic(Topic.ExchangeTypeEnum.where);
+            t.subject = worldManager.world.findByProperNoun("Westerberg Campus");
 
-            cParams.addQUDitem(q);
+            cParams.addTopic(t);
 
 
 
@@ -108,6 +109,11 @@ namespace DriverNamespace
             outputRichTextBox.AppendText("------------------------------------------------------------------------\n");
 
             loadWorld();//reset the world and wipe the existing convo object
+        }
+
+        private void outputGroupBox_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

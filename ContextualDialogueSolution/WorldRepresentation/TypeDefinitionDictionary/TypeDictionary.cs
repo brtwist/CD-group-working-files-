@@ -1,6 +1,7 @@
 ﻿using EnumNamespace;
 using System;
 using System.Collections.Generic;
+using ContextualDialogue.WorldManager.TypeDefinitionDictionary.DataTypes;
 
 namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 {
@@ -171,6 +172,10 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
 
                                 case "attribute":
                                     newNode.addClassAttribute(parseDescriptor(subStrings));
+                                    break;
+
+                                case "opinion":
+                                    //newNode._opinionParamaters = parseOpinion(subStrings);
                                     break;
 
                                 /*case "comesfrom":
@@ -470,5 +475,57 @@ namespace ContextualDialogue.WorldManager.TypeDefinitionDictionary
             return result;
 
         }
-    }
+/*
+        private TypeDefinition.OpinionParamaters parseOpinion(String[] subStrings)
+        {
+            String[] currentParamater;
+
+
+            TypeDefinition.OpinionParamaters opinionParamaters = new TypeDefinition.OpinionParamaters();
+
+            try
+            {
+                //start looping
+                foreach (String element in subStrings)
+                {
+                    currentParamater = element.Split('=');
+
+                    switch (currentParamater[0].Trim().ToLower())
+                    {
+                        case "likeprobability":
+                            opinionParamaters.liklihoodOfLiking = Double.Parse(currentParamater[1]);
+                            break;
+
+                        case "likereason":
+                            opinionParamaters.reasonsForLiking.Add(currentParamater[1]);
+                            break;
+
+                        case "dislikeprobability":
+                            opinionParamaters.liklihoodOfDisliking = Double.Parse(currentParamater[1]);
+                            break;
+
+                        case "dislikereason":
+                            opinionParamaters.reasonsForDisliking.Add(currentParamater[1]);
+                            break;
+
+                        default:
+                            throw new FileLoadException("Syntax error loading TypeDefinition opinion paramaters " + currentParamater[0].Trim().ToUpper() + ".");
+
+                    }
+                }
+            }//end try
+
+            catch (FileLoadException ex)
+            {
+                throw ex; //throw it up to higher level
+            }
+            catch (ArgumentException ex)//thrown by incorrect enum parsing
+            {
+                throw ex; //throw it up
+            }
+
+            return opinionParamaters;
+        }
+    */
+}
 }

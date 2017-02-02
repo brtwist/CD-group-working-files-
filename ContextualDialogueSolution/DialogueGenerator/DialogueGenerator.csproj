@@ -35,7 +35,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProductionLayers\AdjacencyPair.cs" />
+    <Compile Include="LinguisticDictionary\Verb.cs" />
+    <Compile Include="ProductionLayers\AdjacencyPairs\AdjacencyPairPrefab_discuss_short.cs" />
+    <Compile Include="ProductionLayers\AdjacencyPairs\AdjacencyPairPrefab_farewell.cs" />
+    <Compile Include="ProductionLayers\Conversation.UtteranceGenerator.DiscussingStuff.cs" />
+    <Compile Include="Topic.cs" />
+    <Compile Include="ProductionLayers\AdjacencyPairs\AdjacencyPair.cs" />
+    <Compile Include="ProductionLayers\AdjacencyPairs\AdjacencyPairPrefab_compliment.cs" />
+    <Compile Include="ProductionLayers\AdjacencyPairs\AdjacencyPairPrefab_greeting.cs" />
+    <Compile Include="ProductionLayers\AdjacencyPairs\AdjacencyPairPrefab_greeting_questionExchange.cs" />
+    <Compile Include="ProductionLayers\AdjacencyPairs\AdjacencyPairPrefab_request.cs" />
+    <Compile Include="ProductionLayers\AdjacencyPairs\AdjacencyPairPrefab_restaraunt_placeOrder.cs" />
+    <Compile Include="ProductionLayers\AdjacencyPairs\AdjacencyPairPrefab_restaraunt_takeOrder.cs" />
     <Compile Include="ProductionLayers\Conversation.cs" />
     <Compile Include="ProductionLayers\Conversation.QUDGenerator.cs" />
     <Compile Include="ProductionLayers\ConversationalParamaters.cs" />
@@ -46,7 +57,7 @@
     <Compile Include="LinguisticDictionary\TreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProductionLayers\Conversation.MovesQueueGenerator.cs" />
-    <Compile Include="ProductionLayers\QUDitem.cs" />
+    <Compile Include="ProductionLayers\PairParamaters.cs" />
     <Compile Include="ProductionLayers\Turn.cs" />
     <Compile Include="ProductionLayers\Conversation.UtteranceGenerator.cs" />
   </ItemGroup>
@@ -55,6 +66,9 @@
       <Project>{43d383df-ab50-480a-aed5-5ffaea163720}</Project>
       <Name>WorldManager</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ProductionLayers\Conversation.UtteranceGenerator.Modals.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

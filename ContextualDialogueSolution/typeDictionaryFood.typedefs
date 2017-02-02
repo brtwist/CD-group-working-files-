@@ -7,24 +7,31 @@
 
 #typedefinition start fruit #ISA food
 	|noun |singular=fruit |countable=false
+	|opinion |likeprobability=0.6 |likereason=healthy |likereason=taste
 	%|gradeable=taste |value=1.1
-	%|gradeable=healthy |value1.0
+	%|gradeable=healthy |value1.1
+	%|causalityFuture |liklihood=1.0 |condition=eaten |result=will rot %if its not eaten, it will rot
+	%|causalityPast |liklihood=0.5 |condition=tasty |implication=cheff good %if its good food it might be from a good cheff. if probability was 1.0 'it must be a good cheff'
 #typedefinition end fruit
 
 #typedefinition start banana #ISA fruit
 	|noun |singular=banana |plural=bananas
+	|opinion |likeprobability=0.8 |likereason=taste
 	%|gradeable=taste |value=1.2
 	|attribute |trait=yellow |verb=is
 	%|gradeable=healthy |value=1.5 
 #typedefinition end banana
 
 #typedefinition start mango #ISA fruit
-	%|gradeable tastes |value=1.4
+	|opinion |likeprobability=0.9 |likereason=taste
+	%|gradeable taste |value=1.4
 	|attribute |trait=yellow |verb=is
 #typedefinition end mango
 
 #typedefinition start chocolate #ISA food
+	|opinion |likeprobability=0.6 |likereason=taste |dislikeprobability=0.4 |dislikereason=healthy
 	%|gradeable tastes |value=1.4
+	%|gradeable healthy |value=0.6
 #typedefinition end chocolate
 
 #typedefinition start drink #ISA PhysicalEntity
